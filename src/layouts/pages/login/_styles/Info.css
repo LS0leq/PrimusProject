@@ -1,0 +1,15 @@
+.info {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    color: var(--neutralGray);
+    z-index: 1000;
+}
+
+.info > .title {
+
+}

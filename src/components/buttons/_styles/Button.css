@@ -1,0 +1,16 @@
+button {
+    border-radius: 8px;
+    padding: 8px 14px;
+    background: black;
+    color: white;
+    font-family: DMSans-SemiBold;
+    border: none;
+    outline: 0;
+    font-size: 18px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+button:hover {
+    transform: scale(0.92);
+}

@@ -1,0 +1,55 @@
+{
+    "version": 1.0,
+    "creator": {
+        "autoAddClassNames": true,
+        "autoSetTagNames": true,
+        "includeDefaultText": true,
+        "createWithSplitLines": true,
+        "topEmptyLines": 1,
+        "stringReturnPrefix": ""
+    },
+    "compiler": {
+        "globalPagesSettings": {
+            "lang": "en",
+            "title": "Example page",
+            "shortTitle": "Page",
+            "descrption": "An empty description for page",
+            "themeColor": "#ffffff",
+            "backgroundColor": "#000000",
+            "robots": ["index", "follow"],
+            "preloads": []
+        },
+        "pages": {
+            "index": {
+                "lang": "en",
+                "title": "New project!",
+                "shortTitle": "Project!",
+                "canonical": null,
+                "icon": null,
+                "cover": null,
+                "description": "Default website description",
+                "themeColor": "#ffffff",
+                "backgroundColor": "#000000",
+                "author": null,
+                "keywords": [],
+                "robots": ["index", "follow"],
+                "socialMedia": {
+                    "title": "New project!",
+                    "description": "Default website description",
+                    "image": null,
+                    "url": null,
+                    "twitter": {
+                        "enabled": true,
+                        "card": "summary_large_image"
+                    }
+                }
+            }
+        },
+        "createEngineSearchContent": true,
+        "minifyScripts": true,
+        "libraryPath": "./cjs",
+        "commonPath": "./common",
+        "tempWebServerPort": 49152,
+        "output": "./compiled"
+    }
+}

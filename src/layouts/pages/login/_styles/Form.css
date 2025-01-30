@@ -1,0 +1,146 @@
+.login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    width: 75vw;
+    height: 80vh;
+    margin-left: 50vw;
+    margin-top: 10vh;
+    transform: translateX(-50%) translateY(0vh);
+    border-radius: 5px;
+    font-size: 20px;
+}
+
+.login > .image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login > .image > img {
+    width: 65vh;
+    border-radius: 5px;
+}
+
+
+
+.login > form {
+    margin-left: 5vw;
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-right: 5vw;
+}
+
+.login > form > h2 {
+    margin-bottom: 10%;
+    font-size: 34px;
+}
+
+.login > form > label {
+    margin-bottom: 5%;
+
+}
+
+.login > form > label > p {
+    display: block;
+    padding: 5px;
+    font-size: 14px;
+    font-weight: 500;
+}
+.login > form > label > input[type="text"],
+.login > form > label > input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    position: relative;
+    transition: border var(--transitionTime) ease;
+    border-left: 2px solid green;
+}
+
+.login > form > label > input[type="text"]:focus,
+.login > form > label > input[type="password"]:focus {
+    border: 2px solid var(--darkGreenMain);
+    outline: none;
+}
+
+.login > form > button.submit {
+    width: 50%;
+    padding: 12px;
+    background-color: var(--darkGreenMain);
+    background-size: 200%;
+    border: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 25px;
+    cursor: pointer;
+    margin-top: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    overflow: hidden;
+    transition: background-color var(--transitionTimeLonger) ease;
+}
+
+.login >form>button.submit:hover{
+    background-color:var(--darkBottleGreen);
+}
+
+.login > form > button.submit > img,
+.login > form > button.submit > p {
+    z-index: 23;
+}
+
+.login > form >button.submit img {
+    width: 20px;
+    border: none;
+    background-color: transparent;
+    margin-right: 5px;
+}
+
+
+.login > form > button.language {
+    width: 30px;
+    height: 30px;
+    border:none;
+    background-color: transparent;
+    margin-top: 5%;
+    transition: scale var(--transitionTime) var(--transitionCubic), transform var(--transitionTime) var(--transitionCubic);
+}
+
+.login > form >button.language:hover{
+    scale: 1.2;
+    transform: rotate(15deg);
+}
+
+.login > form > button.language > img {
+    width: 50px;
+    height: 50px;
+    border: 3px solid var(--darkBottleGreen);
+    border-radius: 50%;
+    background-color: transparent;
+    cursor: pointer;
+    background-clip: padding-box;
+    transition: border var(--transitionTime) ease;
+}
+.login > form > button.language > img:hover{
+    border: 3px solid var(--ecoGreen);
+}
+
+.login-form {
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+
+
+

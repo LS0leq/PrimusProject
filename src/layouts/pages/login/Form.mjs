@@ -3,12 +3,16 @@ export const Form = new CjsComponent((data) => {
 
     return `
         <div class="login">
-            <div class="image">
-                <img src="${jpg(`forming`)}" alt="Login Image" />
+                <div class="image">
+                     <div class="logo-container">
+                    <img src="${svg(`login/logoText`)}" alt="Logo" class="logo" />
+                </div>
+                <img src="${jpg(`forming`)}" alt="Login Image" class="main-image" />
             </div>
 
             <form>
-                <h2>Admin Panel</h2>
+                <h2>Witaj w IdeaAmp!</h2>
+                <h3>Zaloguj się do swojego konta</h3>
                 
                 <label>
                     <p>Email</p>
@@ -21,7 +25,10 @@ export const Form = new CjsComponent((data) => {
                 </label>
                 
         
-                <button class="submit"><img src="${svg(`login/login`)}" alt="Login Icon" /><p>Zaloguj się</p></button>
+                <button class="submit">
+<!--                    <img src="${svg(`login/login`)}" alt="Login Icon" />-->
+                    <p>Zaloguj się</p>
+                </button>
         
                 <button class="language">
                     <img src="${svg(`login/england`)}" alt="English Flag" />

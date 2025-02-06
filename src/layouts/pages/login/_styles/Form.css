@@ -1,13 +1,13 @@
 .login {
     display: flex;
-    justify-content: center;
+    gap: 40px;
     align-items: center;
     background: #fff;
-    width: 75vw;
-    height: 80vh;
-    margin: 10vh auto 0;
+    width: fit-content;
+    height: 400px;
     border-radius: 5px;
     font-size: 20px;
+    filter: drop-shadow(2px 4px 6px gray);
 }
 
 .login > .image {
@@ -18,50 +18,50 @@
 }
 
 .login > .image > img {
-    width: 65vh;
     border-radius: 5px;
+    height: 420px;
 }
-
-
 
 .login > .image >.logo-container {
     position: absolute;
     top: 20px;
     left: 20px;
-    width: 5vw;
 }
+
+.login > .image >.logo-container > img {
+    height: 40px;
+}
+
 .login > .image >.logo {
     width: 200px;
 }
 
-.login > .image >.main-image {
-    width: 65vh;
-    border-radius: 5px;
-}
-
-
 .login > form {
-    width: 75%;
+    /*width: 75%;*/
     display: flex;
     flex-direction: column;
     gap: 5px;
-    margin: 0 5vw;
+    /*margin: 0 5vw;*/
+    width: 400px;
+
 }
 
 .login > form > h2 {
-    font-size: 20px;
+    font-size: 25px;
 }
 
 .login > form > h3 {
-    font-size: 10px;
+    font-size: 13px;
     margin-bottom: 3%;
     color: var(--neutralGray);
     font-weight: 530;
+    text-indent: 3px;
 }
 
 .login > form > label {
-    margin-bottom: 5%;
+    width: 80%;
 }
+
 
 .login > form > label > p {
     padding: 5px;
@@ -75,29 +75,29 @@
     border: 1px solid #ddd;
     border-radius: 5px;
     font-size: 14px;
-    transition: border var(--transitionTime) ease;
+    transition: outline var(--transitionTimeOutline) ;
 }
 
 .login > form > label > input:focus {
-    border: 2px solid var(--darkGreenMain);
-    outline: none;
+    /*border: 2px solid var(--darkGreenMain);*/
+    outline: 2px solid var(--darkBottleGreen);
 }
 
 .login > form > button.submit {
-    width: 65%;
-    padding: 17px;
+    padding: 16px;
+    max-width: 200px;
     background-color: var(--darkGreenMain);
     border: none;
     color: white;
-    font-size: 18px;
-    border-radius: 25px;
+    font-size: 16px;
+    border-radius: 35px;
     cursor: pointer;
-    margin-top: 5%;
+    margin-top: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: 00;
     overflow: hidden;
+    font-family: DMSans-Bold;
     transition: background-color var(--transitionTimeLonger) ease;
 }
 
@@ -112,6 +112,7 @@
 }
 
 .login > form > button.language {
+    display: none;
     width: 20px;
     height: 30px;
     border: none;
@@ -149,87 +150,87 @@
 }
 
 
-@media(max-width: 768px) {
-    .login {
-        flex-direction: column;
-        width: 90vw;
-        height: 90vh;
-    }
+/*@media(max-width: 768px) {*/
+/*    .login {*/
+/*        flex-direction: column;*/
+/*        width: 90vw;*/
+/*        height: 90vh;*/
+/*    }*/
 
-    .login > .image {
-        width: 100%;
-        height: 50%;
-    }
+/*    .login > .image {*/
+/*        width: 100%;*/
+/*        height: 50%;*/
+/*    }*/
 
-    .login > .image > img {
-        width: 100%;
-    }
+/*    .login > .image > img {*/
+/*        width: 100%;*/
+/*    }*/
 
-    .login > form {
-        width: 100%;
-        height: 50%;
-        margin: 0;
-    }
+/*    .login > form {*/
+/*        width: 100%;*/
+/*        height: 50%;*/
+/*        margin: 0;*/
+/*    }*/
 
-    .login > form > h2 {
-        font-size: 18px;
-    }
+/*    .login > form > h2 {*/
+/*        font-size: 18px;*/
+/*    }*/
 
-    .login > form > h3 {
-        font-size: 8px;
-    }
+/*    .login > form > h3 {*/
+/*        font-size: 8px;*/
+/*    }*/
 
-    .login > form > label > p {
-        font-size: 12px;
-    }
+/*    .login > form > label > p {*/
+/*        font-size: 12px;*/
+/*    }*/
 
-    .login > form > label > input {
-        font-size: 12px;
-    }
+/*    .login > form > label > input {*/
+/*        font-size: 12px;*/
+/*    }*/
 
-    .login > form > button.submit {
-        font-size: 16px;
-    }
+/*    .login > form > button.submit {*/
+/*        font-size: 16px;*/
+/*    }*/
 
-    .login > form > button.language {
-        width: 15px;
-        height: 25px;
-    }
+/*    .login > form > button.language {*/
+/*        width: 15px;*/
+/*        height: 25px;*/
+/*    }*/
 
-    .login > form > button.language > img {
-        width: 30px;
-        height: 30px;
-    }
-}
+/*    .login > form > button.language > img {*/
+/*        width: 30px;*/
+/*        height: 30px;*/
+/*    }*/
+/*}*/
 
-@media(min-width: 1362px){
+/*@media(min-width: 1362px){*/
 
-    .login > form > button.submit {
-        width: 40%;
-    }
+/*    .login > form > button.submit {*/
+/*        width: 40%;*/
+/*    }*/
 
-    .login > form > h2 {
-        font-size: 30px;
-    }
+/*    .login > form > h2 {*/
+/*        font-size: 30px;*/
+/*    }*/
 
-    .login > form > h3 {
-        font-size: 13px;
+/*    .login > form > h3 {*/
+/*        font-size: 13px;*/
 
-    }
+/*    }*/
 
-}
+/*}*/
 
-@media(min-width: 2532px){
+/*@media(min-width: 2532px){*/
 
 
 
-    .login > form > h2 {
-        font-size: 34px;
-    }
+/*    .login > form > h2 {*/
+/*        font-size: 34px;*/
+/*    }*/
 
-    .login > form > h3 {
-        font-size: 15px;
+/*    .login > form > h3 {*/
+/*        font-size: 15px;*/
 
-    }
+/*    }*/
 
-}
+/*}*/

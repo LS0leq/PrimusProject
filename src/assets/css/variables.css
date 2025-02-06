@@ -1,6 +1,8 @@
 :root {
     --transitionTime: 0.8s;
-    --transitionTimeLonger: 1.6s;
+    --transitionTimeOutline: 0.1s;
+    --transitionTimeLonger: 0.3s;
+    /*--transitionTimeLonger: 1.6s;*/
     --transitionCubic: cubic-bezier(1, 0.38, 0, 0.61);
 
     --darkGreenMain:#0B3D2E;

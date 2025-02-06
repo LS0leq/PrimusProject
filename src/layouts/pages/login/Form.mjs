@@ -5,9 +5,9 @@ export const Form = new CjsComponent((data) => {
         <div class="login">
                 <div class="image">
                      <div class="logo-container">
-                    <img src="${svg(`login/logoText`)}" alt="Logo" class="logo" />
+                    <img src="${svg(`logo/icon-white`)}" alt="Logo" class="logo" />
                 </div>
-                <img src="${jpg(`forming`)}" alt="Login Image" class="main-image" />
+                <img src="${jpg(`forming`)}" alt="Login Image" />
             </div>
 
             <form>
@@ -16,12 +16,12 @@ export const Form = new CjsComponent((data) => {
                 
                 <label>
                     <p>Email</p>
-                    <input type="text" name="username" placeholder="np. admin@admin.com" required>
+                    <input type="text" name="username" placeholder="np.admin@admin.com" required>
                 </label>
                 
                 <label>
                     <p>Hasło</p>
-                    <input type="password" name="password" placeholder="np. zaq1@WSX" required>
+                    <input type="password" name="password" placeholder="np.zaq1@WSX" required>
                 </label>
                 
         

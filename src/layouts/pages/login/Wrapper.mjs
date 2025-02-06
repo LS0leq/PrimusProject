@@ -6,4 +6,6 @@ export const Wrapper = new CjsComponent((data) => {
     `;
 });
 
+Wrapper.fillHeight();
+
 Wrapper.importStyle('./src/layouts/pages/login/_styles/Wrapper.css');

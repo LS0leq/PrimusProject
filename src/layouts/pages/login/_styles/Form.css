@@ -7,7 +7,7 @@
     height: 400px;
     border-radius: 5px;
     font-size: 20px;
-    filter: drop-shadow(2px 4px 6px gray);
+    filter: drop-shadow(2px 4px 6px black);
 }
 
 .login > .image {

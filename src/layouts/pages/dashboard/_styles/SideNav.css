@@ -1,0 +1,55 @@
+.sideNav {
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    color: black;
+    gap: 20px;
+    padding: 15px;
+}
+.sideNav h2 {
+    font-size: 14px;
+    color: var(--neutralGray);
+    padding-bottom: 5px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+
+}
+.sideNav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+
+.sideNav div:nth-child(1){
+    display: flex;
+    align-items: center;
+}
+
+.sideNav div:nth-child(1) img{
+    width: 50px;
+    height: 50px;
+    border-radius: 11px;
+    margin-right: 10px;
+}
+
+li {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: background 0.3s;
+    border-radius: 5px;
+    gap: 5px;
+}
+
+li img {
+    width: 20px;
+}
+
+li:hover {
+    background: var(--naturalGreen);
+}
+
+li.active{
+    background-color: var(--darkBottleGreen);
+}

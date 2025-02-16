@@ -51,5 +51,5 @@ li:hover {
 }
 
 li.active{
-    background-color: var(--darkBottleGreen);
+    background-color: var(--ecoGreen);
 }

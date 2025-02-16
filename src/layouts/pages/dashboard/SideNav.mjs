@@ -21,7 +21,7 @@ export const SideNav = new CjsComponent((data) => {
         <nav class="sideNav">
             <div>
                 <img src="${jpg(`defaultLogo`)}" alt="Login Image" />
-                <div class="UserName">User Name</div>
+                <div class="UserName">Admin</div>
             </div>
             
            <div>

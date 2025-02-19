@@ -1,0 +1,14 @@
+.wrapper {
+    display: flex;
+    gap: 8px;
+    padding: 8px;
+
+}
+
+.wrapper > div {
+    width: 50%;
+}
+
+.discount>div{
+    width: 100%;
+}

@@ -7,42 +7,37 @@ export const Income = new CjsComponent((data) => {
 
         const ctx = canvas.getContext('2d');
 
-        const gradientStroke = ctx.createLinearGradient(0, 230, 0, 50);
-        gradientStroke.addColorStop(1, 'rgba(66,134,121,0.15)');
-        gradientStroke.addColorStop(0.4, 'rgba(66,134,121,0.0)');
-        gradientStroke.addColorStop(0, 'rgba(66,134,121,0)');
-
         const incomeData = {
             labels: [
-                'Styczeń', 'Luty', 'Marzec', 'Kwiecień', 'Maj', 'Czerwiec', 'Lipiec', 'Sierpień', 'Wrzesień', 'Październik', 'Listopad', 'Grudzień',
-                'Styczeń', 'Luty', 'Marzec', 'Kwiecień', 'Maj', 'Czerwiec', 'Lipiec', 'Sierpień', 'Wrzesień', 'Październik', 'Listopad', 'Grudzień'
+                '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11',
+                '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23'
             ],
             datasets: [{
-                label: '',
-                fill: true,
-                backgroundColor: gradientStroke,
+                label: 'Średnia ilość użytkowników',
+                backgroundColor: '#3A9D65',
                 borderColor: '#3A9D65',
-                borderWidth: 2,
-                pointBackgroundColor: '#3A9D65',
-                pointBorderColor: 'rgba(255,255,255,0)',
-                pointHoverBackgroundColor: '#00d6b4',
-                pointBorderWidth: 20,
-                pointHoverRadius: 4,
-                pointHoverBorderWidth: 15,
-                pointRadius: 4,
-                data: [5698, 6878, 5735, 5664, 6629, 6128, 6965, 6688, 6641, 5221, 6201, 6582, 6063, 5468, 6503, 6389, 6416, 6952, 7123, 6343, 6284, 6442, 6667, 6405],
+                borderWidth: 1,
+                data: [0, 2, 1, 1, 0, 3, 3, 2, 4, 4, 3, 4, 4, 5, 8, 7, 9, 6, 7, 9, 4, 5, 3, 2],
             }]
         };
 
         new Chart(ctx, {
-            type: 'line',
+            type: 'bar',
             data: incomeData,
             options: {
                 responsive: true,
                 scales: {
-                    y: { beginAtZero: false },
-                    x: { grid: { display: false } },
-                    y: { grid: { display: false } }
+                    x: {
+                        grid: { display: false },
+                        ticks: {
+                            maxRotation: 0,
+                            minRotation: 0
+                        }
+                    },
+                    y: {
+                        grid: { display: false },
+                        beginAtZero: true
+                    }
                 },
                 plugins: {
                     legend: { display: false }

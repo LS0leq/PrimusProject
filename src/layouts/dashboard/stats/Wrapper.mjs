@@ -7,4 +7,4 @@ export const Wrapper = new CjsComponent((data) => {
     `;
 });
 
-Wrapper.importStyle('./src/layouts/dashboard/stats/_styles/Wrapper.css');
+Wrapper.importStyle('./src/layouts/dashboard/_styles/Wrapper.css');

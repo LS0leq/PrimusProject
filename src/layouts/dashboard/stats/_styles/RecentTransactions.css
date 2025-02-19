@@ -1,44 +1,43 @@
 
 .recent-transactions {
-    margin-top: 10px;
+    max-height: 150px;
+    overflow-y: auto;
 }
 
 .recent-transactions .transactions{
     display: flex;
     flex-direction: column;
-    gap: 20px;
-
+    gap: 10px;
 }
-.recent-transactions .transactions .transaction{
+
+.transaction{
     display: flex;
     align-items: center;
     width: 100%;
-    gap: 30px;
-
+    justify-content: space-between;
 }
-.recent-transactions .transactions .transaction img {
+
+.transaction > .box {
+    display: flex;
+    gap: 10px;
+}
+
+.transaction > .box > img {
     width: 30px;
     margin-left: 5px;
 }
 
-.recent-transactions .transactions .transaction div{
-    display: flex;
-
-}
-.recent-transactions .transactions .transaction div p{
+.transaction > .box > p{
     display: flex;
     flex-direction: column;
     gap: 5px;
-    position: relative;
-    width: 58vw;
 }
 
-.recent-transactions .transactions .transaction div p span{
+.transaction > .box > p > span{
     font-size: 12px;
-    color: var(--neutralGray);
+    color: var(--dark-500);
 }
-.recent-transactions .transactions .transaction div .price{
+.transaction > .price{
     color: var(--ecoGreen);
-    right: -8vw;
-    position: absolute;
+
 }

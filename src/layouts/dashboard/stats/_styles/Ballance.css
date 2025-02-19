@@ -1,32 +1,32 @@
-
-.ballance .ballance-info{
+.ballance {
     display: flex;
-    flex-direction: row;
     align-items: center;
     gap: 10px;
-    padding: 5px;
-
-}
-.ballance .ballance-info p{
-    font-size: 9px;
-    color: var(--neutralGray);
 }
 
-.ballance .ballance-info p:first-child{
+.ballance > p.amount {
+    color: var(--dark-100);
     font-size: 32px;
-    color: black;
 }
 
-.ballance .ballance-info img{
-    width: 15px;
-}
-
-.ballance .ballance-info span{
+.ballance > .box {
     display: flex;
     align-items: center;
+    gap: 5px;
     border:1px solid var(--ecoGreen);
     background-color: #DDFFEC;
     color:var(--ecoGreen) ;
-    padding: 4px;
+    padding: 4px 8px;
     border-radius: 40px;
+    height: fit-content;
 }
+
+.ballance > .box > img {
+    height: 15px;
+}
+
+.ballance > .box > p {
+    font-size: 9px;
+    color: var(--dark-300);
+}
+

@@ -1,0 +1,45 @@
+.generate-raport {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 20px;
+}
+.generate-raport > div > input {
+    color: var(--dark-100);
+    border: 1px solid var(--light-400);
+    border-radius: 8px;
+    padding: 8px 12px;
+    transition: all var(--transitionTimeLonger) ease;
+    box-sizing: border-box;
+}
+.generate-raport > div{
+    /*margin-top: 20px;*/
+}
+
+.generate-raport > div > input:focus {
+    border-color: var(--dark-100);
+    outline: none;
+    box-shadow: 0 0 8px var(--light-400);
+}
+
+.generate-raport > div > input::placeholder {
+    color: var(--light-400);
+}
+
+.generate-raport > div > input:hover {
+    border-color: var(--dark-100);
+    cursor: text;
+}
+.generate-raport >button{
+    background-color: var(--ecoGreen);
+    color: var(--light-100);
+    border: none;
+    border-radius: 8px;
+    padding: 8px 12px;
+    transition: all var(--transitionTimeLonger) ease;
+}
+
+.generate-raport >button:hover{
+    background-color: var(--naturalGreen);
+    cursor: pointer;
+}

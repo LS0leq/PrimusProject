@@ -1,0 +1,29 @@
+:root {
+    --light: "red";
+    --light-100: "red";
+    --light-200: "red";
+    --light-300: "red";
+    --light-400: "red";
+    --light-500: "red";
+    --base-100: "red";
+    --base-100-dark-10: "red";
+    --base-100-dark-20: "red";
+    --base-100-dark-50: "red";
+    --base-100-dark-100: "red";
+    --base-100-opacity: "red";
+    --dark-100: "red";
+    --dark-200: "red";
+    --dark-300: "red";
+    --dark-400: "red";
+    --dark-500: "red";
+    --filter-white-100: "red";
+    --filter-black-100: "red";
+    --filter-green-100: "red";
+    --dark-font-regular: "red";
+    --shadow-25: "red";
+    --background-l-100-d-300: "red";
+
+    --const-filter-black: "";
+    --const-filter-green: "";
+    --const-filter-white: "";
+}

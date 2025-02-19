@@ -1,5 +1,6 @@
 import {DashboardLayout} from "./layouts/pages/dashboard/DashboardLayout.mjs";
 import {RootLayout} from "./layouts/root/RootLayout.mjs";
+import {ThemePlugin} from "./plugins/ThemePlugin.mjs";
 
 Search.setDisplayedOnScreen(true);
 
@@ -11,4 +12,7 @@ Search.onChange((search) => {
 
         DashboardLayout.loadContent(category);
     }
+
 });
+
+ThemePlugin.loadTheme();

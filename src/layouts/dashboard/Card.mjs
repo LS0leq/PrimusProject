@@ -8,6 +8,6 @@ export const Card = new CjsComponent((data) => {
     `;
 });
 
-Card.setDefaultData({ title: "Example title" });
+Card.setDefaultData({ title: "Example title"});
 
 Card.importStyle('./src/layouts/dashboard/_styles/Card.css');

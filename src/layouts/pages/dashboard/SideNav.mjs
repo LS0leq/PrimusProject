@@ -28,9 +28,10 @@ export const SideNav = new CjsComponent((data) => {
                <h2>Menu</h2>
                <ul>
                     ${Li.render({ icon: svg(`nav/stats`), alt: "stats", text: "Statystyki", search: "/dashboard/stats", active: true })}
-                    ${Li.render({ icon: svg(`nav/products`), alt: "products", text: "Produkty", search: "/dashboard/products" })}
-                    ${Li.render({ icon: svg(`nav/task`), alt: "task", text: "Zadania" })}
+                    ${Li.render({ icon: svg(`nav/discount`), alt: "discount", text: "Rabaty", search: "/dashboard/discount" })}
+                    ${Li.render({ icon: svg(`nav/map`), alt: "map", text: "Mapy stacji",search: "/dashboard/map" })}
                     ${Li.render({ icon: svg(`nav/report`), alt: "report", text: "Raporty", search: "/dashboard/report" })}
+                    ${Li.render({ icon: svg(`nav/users`), alt: "users", text: "Użytkownicy", search: "/dashboard/users" })}
                 </ul>
            </div>
             

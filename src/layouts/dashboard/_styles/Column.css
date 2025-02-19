@@ -1,8 +1,5 @@
-
-
-.stats{
+.column {
     display: flex;
     flex-direction: column;
-    gap: 2vh;
-    padding: 8px;
+    gap: 8px;
 }

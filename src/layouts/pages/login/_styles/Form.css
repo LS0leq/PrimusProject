@@ -53,7 +53,7 @@
 .login > form > h3 {
     font-size: 13px;
     margin-bottom: 3%;
-    color: var(--neutralGray);
+    color: var(--dark-400);
     font-weight: 530;
     text-indent: 3px;
 }
@@ -88,7 +88,7 @@
     max-width: 200px;
     background-color: var(--darkGreenMain);
     border: none;
-    color: white;
+    color: var(--light-100);
     font-size: 16px;
     border-radius: 35px;
     cursor: pointer;

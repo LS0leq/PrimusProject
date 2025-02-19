@@ -14,5 +14,7 @@ export const RootLayout = new CjsLayout(
 RootLayout.onLoad(() => {
     console.log('RootLayout loaded!');
 
-    Search.set("/dashboard/stats")
+    // Search.set("/dashboard/stats")
+    Search.set("/dashboard/report")
+    // Search.set("/dashboard/discount")
 });

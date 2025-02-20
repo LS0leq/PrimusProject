@@ -1,0 +1,66 @@
+.question-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 15px;
+    border-radius: 8px;
+    height: 60vh;
+    overflow-y: scroll;
+}
+
+.question-list .question-item {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 12px;
+    background-color: var(--light-200);
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.question-list .question-item .question-title {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: var(--dark-100);
+}
+
+.question-list .question-item .question-description {
+    font-size: 1rem;
+    color: var(--dark-200);
+}
+
+.question-list .question-item .actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.question-list .question-item .actions button {
+    color: var(--light-100);
+    width: 160px;
+    padding: 8px 12px;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    transition: all var(--transitionTimeLonger) ease;
+}
+
+.question-list .question-item .actions button:hover {
+    cursor: pointer;
+}
+
+.question-list .question-item .actions .approve-button {
+    background-color: var(--ecoGreen);
+}
+
+.question-list .question-item .actions .approve-button:hover {
+    background-color: var(--darkBottleGreen);
+}
+
+.question-list .question-item .actions .reject-button {
+    background-color: red;
+}
+
+.question-list .question-item .actions .reject-button:hover {
+    background-color: darkred;
+}

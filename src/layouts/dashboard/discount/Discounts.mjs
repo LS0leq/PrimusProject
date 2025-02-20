@@ -59,7 +59,6 @@ export const Discounts = new CjsComponent(() => {
         updatedDiscount.uses = uses;
         updatedDiscount.expiration = expiration;
         localStorage.setItem('discounts', JSON.stringify(discountData));
-        Search.set("/dashboard/discount");
         location.reload();
     };
 

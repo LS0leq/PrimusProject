@@ -1,0 +1,43 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    height: 67vh;
+    overflow-y: scroll;
+}
+
+.container > .item{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.container > .item > .info {
+    display: flex;
+    justify-content: space-between;
+    gap: 25px;
+}
+
+
+.container>.item>.actions{
+    display: flex;
+    gap: 25px;
+}
+
+.container>.item>.actions img{
+    width: 20px;
+    cursor: pointer;
+    transition: transform var(--transitionTimeLonger) ease;
+}
+
+
+.container>.item>.actions img:hover{
+    transform: scale(1.2);
+}
+
+.container>.item>.actions img:nth-child(1){
+    filter: var(--const-filter-green);
+}
+.container>.item>.actions img:nth-child(2){
+    filter: var(--const-filter-dark-red);
+}

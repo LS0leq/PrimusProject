@@ -1,5 +1,5 @@
-import {Wrapper} from "./Wrapper.mjs";
-import {Header} from "./Header.mjs";
+import {Wrapper} from "../Wrapper.mjs";
+import {Header} from "../Header.mjs";
 import {Card} from "../Card.mjs";
 import {Discounts} from "./Discounts.mjs";
 

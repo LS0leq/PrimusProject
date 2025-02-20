@@ -47,6 +47,7 @@ const Shared = {
     "--const-filter-green": "invert(26%) sepia(75%) saturate(2210%) hue-rotate(86deg) brightness(98%) contrast(103%)",
     "--const-filter-green-2": "invert(26%) sepia(75%) saturate(2210%) hue-rotate(86deg) brightness(98%) contrast(103%)",
     "--const-filter-dark-red": "invert(21%) sepia(70%) saturate(3500%) hue-rotate(0deg) brightness(75%) contrast(100%)",
+    "--const-filter-blue": "invert(41%) sepia(90%) saturate(5300%) hue-rotate(180deg) brightness(85%) contrast(90%)",
     "--base-100-dark-10": "#00cc4a",
     "--base-100-dark-20": "#00be49",
     "--base-100-dark-50": "#00a63f",

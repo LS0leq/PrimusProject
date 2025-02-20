@@ -15,6 +15,9 @@ RootLayout.onLoad(() => {
     console.log('RootLayout loaded!');
 
     // Search.set("/dashboard/stats")
-    Search.set("/dashboard/report")
+    Search.set("/dashboard/messages")
+    // Search.set("/dashboard/account")
+    // Search.set("/dashboard/report")
+    // Search.set("/dashboard/users")
     // Search.set("/dashboard/discount")
 });

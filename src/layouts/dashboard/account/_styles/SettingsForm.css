@@ -1,0 +1,74 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    gap: 20px;
+    height: 67vh;
+    overflow-y: scroll;
+
+}
+
+.container .section{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.container .section> div>input,.container .section> div>select {
+    color: var(--dark-100);
+    border: 1px solid var(--light-400);
+    border-radius: 8px;
+    padding: 8px 12px;
+    transition: all var(--transitionTimeLonger) ease;
+    box-sizing: border-box;
+}
+
+
+.container .section> div>input:focus,.container .section> div>select:focus {
+    border-color: var(--dark-100);
+    outline: none;
+    box-shadow: 0 0 8px var(--light-400);
+}
+
+.container .section> div>input::placeholder {
+    color: var(--light-400);
+}
+
+.container .section>.container .section> div>input:hover {
+    border-color: var(--dark-100);
+    cursor: text;
+}
+.container .button-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.container .button-container button {
+    color: var(--light-100);
+    width: 200px;
+    padding: 8px 12px;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    transition: all var(--transitionTimeLonger) ease;
+}
+.container .button-container button:hover {
+    cursor: pointer;
+}
+.container .save-button {
+    background-color: var(--ecoGreen);
+
+}
+
+.container .save-button:hover {
+    background-color: var(--darkBottleGreen);
+}
+
+.container .cancel-button {
+    background-color: red;
+}
+
+.container .cancel-button:hover {
+    background-color: darkred;
+}

@@ -3,13 +3,13 @@ const Report = new CjsComponent((data) => {
 
     return `
         <div class="report">
-            <div class="report-details">
+            <div class="details">
                 <p><strong>Data:</strong> ${date}</p>
                 <p><strong>Użytkownik:</strong> ${user}</p>
                 <p><strong>Waga raportu:</strong> ${reportWeight} KB</p>
                 <p><strong>Rozmiar:</strong> ${reportSize}</p>
             </div>
-            <button class="delete-report-btn">Usuń raport</button>
+            <button>Usuń raport</button>
         </div>
     `;
 });
@@ -17,7 +17,6 @@ const Report = new CjsComponent((data) => {
 export const Reports = new CjsComponent((data) => {
     return `
         <div class="reports">
-            <div class="list">
                 ${Report.render({
         date: '2025-02-18',
         user: 'Admin',
@@ -36,7 +35,36 @@ export const Reports = new CjsComponent((data) => {
         reportWeight: '100',
         reportSize: '800 KB'
     })}
-            </div>
+                ${Report.render({
+        date: '2025-02-16',
+        user: 'Michael Smith',
+        reportWeight: '100',
+        reportSize: '800 KB'
+    })}
+                ${Report.render({
+        date: '2025-02-16',
+        user: 'Michael Smith',
+        reportWeight: '100',
+        reportSize: '800 KB'
+    })}
+                ${Report.render({
+        date: '2025-02-16',
+        user: 'Michael Smith',
+        reportWeight: '100',
+        reportSize: '800 KB'
+    })}
+                ${Report.render({
+        date: '2025-02-16',
+        user: 'Michael Smith',
+        reportWeight: '100',
+        reportSize: '800 KB'
+    })}
+                ${Report.render({
+        date: '2025-02-16',
+        user: 'Michael Smith',
+        reportWeight: '100',
+        reportSize: '800 KB'
+    })}
         </div>
     `;
 });

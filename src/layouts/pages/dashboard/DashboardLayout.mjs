@@ -6,6 +6,8 @@ import {UsersLayout} from "../../dashboard/users/UsersLayout.mjs";
 import {ReportLayout} from "../../dashboard/report/ReportLayout.mjs";
 import {DiscountLayout} from "../../dashboard/discount/DiscountLayout.mjs";
 import {MapLayout} from "../../dashboard/map/MapLayout.mjs";
+import {MessageLayout} from "../../dashboard/message/MessageLayout.mjs";
+import {AccountLayout} from "../../dashboard/account/AccountLayout.mjs";
 
 export const DashboardLayout = new CjsLayout(
     [
@@ -21,7 +23,9 @@ const Layouts = {
     "users": UsersLayout,
     "report": ReportLayout,
     "discount": DiscountLayout,
-    "map":MapLayout
+    "map":MapLayout,
+    "account": AccountLayout,
+    "messages": MessageLayout,
 }
 
 DashboardLayout.loadContent = (category) => {

@@ -1,0 +1,84 @@
+.faq-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 15px;
+    border-radius: 8px;
+    height: 40vh;
+    overflow-y: scroll;
+}
+
+.faq-form .section {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.faq-form .section label {
+    font-weight: bold;
+    font-size: 1rem;
+    color: var(--dark-100);
+}
+
+.faq-form .section .title,
+.faq-form .section .answer-text {
+    color: var(--dark-200);
+    border: 1px solid var(--light-400);
+    border-radius: 8px;
+    padding: 8px 12px;
+    transition: all var(--transitionTimeLonger) ease;
+    box-sizing: border-box;
+}
+
+.faq-form .section .title:focus,
+.faq-form .section .answer-text:focus {
+    border-color: var(--dark-100);
+    outline: none;
+    box-shadow: 0 0 8px var(--light-400);
+}
+
+.faq-form .section .title::placeholder,
+.faq-form .section .answer-text::placeholder {
+    color: var(--light-400);
+}
+
+.faq-form .section .title:hover,
+.faq-form .section .answer-text:hover {
+    border-color: var(--dark-100);
+    cursor: text;
+}
+
+.faq-form .actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.faq-form .actions .submit-button {
+    color: var(--light-100);
+    width: 200px;
+    padding: 8px 12px;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    transition: all var(--transitionTimeLonger) ease;
+    background-color: var(--ecoGreen);
+}
+
+.faq-form .actions .submit-button:hover {
+    background-color: var(--darkBottleGreen);
+}
+
+.faq-form .actions .cancel-button {
+    background-color: red;
+    color: var(--light-100);
+    padding: 8px 12px;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    transition: background-color var(--transitionTimeLonger) ease;
+}
+
+.faq-form .actions .cancel-button:hover {
+    background-color: darkred;
+}

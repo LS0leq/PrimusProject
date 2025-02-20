@@ -2,7 +2,6 @@
     display: flex;
     gap: 8px;
     padding: 8px;
-
 }
 
 .wrapper > div {
@@ -11,4 +10,15 @@
 
 .discount>div{
     width: 100%;
+}
+.column {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px;
+    padding: 8px;
+}
+
+.column>div{
+    width: 100%;
+
 }

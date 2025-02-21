@@ -1,0 +1,22 @@
+button {
+    color: var(--light-100);
+    background-color:transparent;
+    outline: none;
+    border: none;
+    padding: 0px !important;
+}
+
+button:hover {
+    background-color: transparent;
+    cursor: pointer;
+}
+
+button img{
+    width: 20px !important;
+    filter: var(--const-filter-dark-red);
+    transition: all var(--transitionTimeLonger)  ease;
+}
+
+button img:hover{
+    scale: 1.1;
+}

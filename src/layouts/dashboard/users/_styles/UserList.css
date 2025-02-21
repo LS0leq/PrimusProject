@@ -1,43 +1,79 @@
-.container{
+.users{
     display: flex;
     flex-direction: column;
     height: 67vh;
     overflow-y: scroll;
+    gap: 10px;
+
 }
 
-.container > .item{
-    width: 100%;
+.users >div> .item{
+    width: 99%;
     display: flex;
     justify-content: space-between;
     padding: 10px;
 }
 
-.container > .item > .info {
+.users >div> .item > .info {
     display: flex;
     justify-content: space-between;
     gap: 25px;
 }
 
 
-.container>.item>.actions{
+.users>div>.item>.actions{
     display: flex;
     gap: 25px;
 }
 
-.container>.item>.actions img{
-    width: 20px;
-    cursor: pointer;
-    transition: transform var(--transitionTimeLonger) ease;
+.users .edit-form {
+    width: 100%;
+    padding: 20px;
+    border-radius: 15px;
+    font-size: 14px;
+    border: 2px solid var(--lighterBorderGray);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-
-.container>.item>.actions img:hover{
-    transform: scale(1.2);
+.users .edit-form h3 {
+    margin: 0 0 10px 0;
+    font-size: 16px;
 }
 
-.container>.item>.actions img:nth-child(1){
-    filter: var(--const-filter-green);
+.users .edit-form label {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--dark-400);
 }
-.container>.item>.actions img:nth-child(2){
-    filter: var(--const-filter-dark-red);
+
+.users .edit-form input {
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid var(--lighterBorderGray);
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.users .edit-form input:focus {
+    border-color: var(--ecoGreen);
+    box-shadow: 0 0 5px rgba(0, 150, 255, 0.3);
+}
+
+.users .edit-form button {
+    color: var(--light-100);
+    width: 200px;
+    padding: 8px 12px;
+    background-color: var(--ecoGreen);
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    transition: all var(--transitionTimeLonger) ease;
+}
+
+.users .edit-form button:hover {
+    background-color: var(--darkBottleGreen);
 }

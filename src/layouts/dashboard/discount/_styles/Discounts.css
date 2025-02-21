@@ -11,6 +11,7 @@
     justify-content: space-between;
     padding: 10px;
     border-radius: 8px;
+    width: 98%;
 }
 
 .discounts .discount-box .info {
@@ -25,22 +26,7 @@
     gap: 20px;
 }
 
-.discounts .actions img {
-    width: 20px;
-    cursor: pointer;
-    transition: transform var(--transitionTimeLonger) ease;
-}
 
-.discounts .actions img:nth-child(1){
-    filter: var(--const-filter-green-2);
-}
-.discounts .actions img:nth-child(2){
-    filter: var(--const-filter-dark-red);
-}
-
-.discounts .actions img:hover {
-    transform: scale(1.2);
-}
 
 .discounts .edit-form,
 .discounts .add-form {
@@ -94,6 +80,7 @@
     transition: all var(--transitionTimeLonger)  ease;
 }
 .discounts .add-discount:hover, .discounts .edit-form button:hover{
+
     background-color: var(--darkBottleGreen);
-    cursor: pointer;
+cursor: pointer;
 }

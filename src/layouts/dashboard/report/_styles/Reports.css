@@ -7,33 +7,19 @@
     gap: 20px;
 }
 
-.reports>.report {
+.reports>div>.report {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     padding: 8px;
     gap: 20px;
     align-items: center;
+    width: 98%;
 }
 
-.reports>.report>.details{
+.reports>div>.report>.details{
     display: flex;
     flex-direction: row;
     gap: 8px;
 }
 
-.reports>.report>button{
-    color: var(--light-100);
-    width: 200px;
-    padding: 8px 12px;
-    background-color:var(--ecoGreen);
-    border-radius: 5px;
-    outline: none;
-    border: none;
-    transition: all var(--transitionTimeLonger)  ease;;
-}
-
-.reports>.report> button:hover{
-    background-color: var(--darkBottleGreen);
-    cursor: pointer;
-}

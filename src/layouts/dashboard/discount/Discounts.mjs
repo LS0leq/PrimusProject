@@ -1,16 +1,20 @@
+import {Button} from "../../../components/buttons/Button.mjs";
+import { EditButton } from "../../../components/buttons/EditButton.mjs";
+import {DeleteButton} from "../../../components/buttons/DeleteButton.mjs";
+
 const Discount = new CjsComponent((data, onEdit) => {
     const { code, uses, expiration, editIcon, deleteIcon, id } = data;
 
     return `
-        <div class="discount-box">
-            <div class="info">
+        <div class="discount-box list">
+            <div class="info ">
                 <p class="code">Kod rabatu: ${code}</p>
                 <p class="uses">Użycia: ${uses}</p>
                 <p class="expiration">Wygasa: ${expiration}</p>
             </div>
             <div class="actions">
-                <img src="${editIcon}" alt="Edytuj" onclick="handleEdit(${id})">
-                <img src="${deleteIcon}" alt="Usuń" onclick="handleDelete(${id})">
+                ${EditButton.render({ click: () => handleEdit(id) })}
+                ${DeleteButton.render({ click: () => handleDelete(id) })}
             </div>
         </div>
     `;
@@ -62,21 +66,6 @@ export const Discounts = new CjsComponent(() => {
         location.reload();
     };
 
-    const renderDiscounts = () => {
-        return `
-            <div class="discounts">
-                ${discountData.map(discount => {
-            return `
-                        <div id="discount-${discount.id}">
-                            ${Discount.render(discount, handleEdit)}
-                        </div>
-                    `;
-        }).join('')}
-                <button id="addDiscountButton" class="add-discount">Dodaj kod rabatowy</button>
-            </div>
-        `;
-    };
-
     document.body.addEventListener('click', (e) => {
         if (e.target && e.target.id === 'addDiscountButton') {
             renderAddDiscountForm();
@@ -93,11 +82,10 @@ export const Discounts = new CjsComponent(() => {
                 <input type="number" id="newUses">
                 <label for="newExpiration">Wygasa:</label>
                 <input type="date" id="newExpiration">
-                <button id="saveNewDiscountButton">Zapisz nowy kod rabatowy</button>
+                ${Button.render({text:"Zapisz nowy kod rabatowy", click: saveNewDiscount})}
             </div>
         `;
         document.querySelector('.discounts').insertAdjacentHTML('beforeend', formHtml);
-        document.getElementById('saveNewDiscountButton').addEventListener('click', saveNewDiscount);
     };
 
     const saveNewDiscount = () => {
@@ -112,7 +100,18 @@ export const Discounts = new CjsComponent(() => {
         location.reload();
     };
 
-    return renderDiscounts();
+    return `
+    <div class="discounts">
+        ${strmap(discountData, discount => `
+        <div id="discount-${discount.id}">
+            ${Discount.render(discount, handleEdit)}
+        </div>
+        `)}
+        ${Button.render({ text: "Dodaj kod rabatowy", click: renderAddDiscountForm, className: "add-discount" })}
+    </div>
+`;
+
 });
 
 Discounts.importStyle('./src/layouts/dashboard/discount/_styles/Discounts.css');
+Discount.importStyle('./src/layouts/dashboard/_styles/List.css');

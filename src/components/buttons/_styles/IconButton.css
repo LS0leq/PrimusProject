@@ -1,0 +1,22 @@
+button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    --t: 30px;
+    width: var(--t);
+    height: var(--t);
+    background: transparent;
+    border:none
+
+}
+
+button > img {
+    width: 20px !important;
+    filter: var(--filter-black-100) !important;
+    transition: all var(--transitionTimeOutline) ease;
+}
+
+button >img:hover{
+    scale: 1.1;
+    cursor: pointer;
+}

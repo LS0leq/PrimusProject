@@ -1,3 +1,5 @@
+import {Button} from "../../../components/buttons/Button.mjs";
+import {RootLayout} from "../../root/RootLayout.mjs";
 
 const Li = new CjsComponent((data) => {
     const { icon, alt, text, search, active } = data;
@@ -15,8 +17,14 @@ const Li = new CjsComponent((data) => {
     `;
 });
 
+
+
 export const SideNav = new CjsComponent((data) => {
-    
+    const logout=()=>{
+        RootLayout.loadLogin();
+        localStorage.removeItem("token");
+
+    }
     return `
         <nav class="sideNav">
             <div>
@@ -41,6 +49,7 @@ export const SideNav = new CjsComponent((data) => {
                     ${Li.render({ icon: svg(`nav/account`), alt: "account", text: "Konto", search: "/dashboard/account" })}
                     ${Li.render({ icon: svg(`nav/message`), alt: "message", text: "Wiadomości", search: "/dashboard/messages" })}
                 </ul>
+                ${Button.render({ text: "Wyloguj", icon: svg(`nav/logout`), click: logout })}
             </div>
         </nav>
     `;

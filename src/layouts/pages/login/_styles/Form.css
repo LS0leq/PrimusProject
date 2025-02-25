@@ -83,7 +83,7 @@
     outline: 2px solid var(--darkBottleGreen);
 }
 
-.login > form > button.submit {
+.login > form > button {
     padding: 16px;
     max-width: 200px;
     background-color: var(--darkGreenMain);
@@ -101,11 +101,11 @@
     transition: background-color var(--transitionTimeLonger) ease;
 }
 
-.login > form > button.submit:hover {
+.login > form > button:hover {
     background-color: var(--darkBottleGreen);
 }
 
-.login > form > button.submit > img {
+.login > form > button > img {
     width: 10px;
     margin-right: 5px;
     background: transparent;

@@ -1,17 +1,21 @@
-section {
+section.report {
     display: flex;
-    flex-direction: column;
+    align-items: center;
     gap: 10px;
     font-size: 20px;
+    flex-direction: column;
+    padding: 20px;
+    height: 15vh;
 }
-
-section > .picker {
+section.report > .generate {
     display: flex;
     gap: 10px;
     align-items: center;
+    justify-content: center;
+    flex-direction: row;
 }
 
-section > .picker > input {
+section.report > .generate > input {
     color: var(--dark-100);
     border: 1px solid var(--light-400);
     border-radius: 8px;
@@ -20,22 +24,18 @@ section > .picker > input {
     box-sizing: border-box;
 }
 
-section > .picker > input:focus {
+
+section.report > .generate > input:focus {
     border-color: var(--dark-100);
     outline: none;
     box-shadow: 0 0 8px var(--light-400);
 }
 
-section > .picker > input::placeholder {
+section.report > .generate > input::placeholder {
     color: var(--light-400);
 }
 
-section > .picker > input:hover {
+section.report > .generate > input:hover {
     border-color: var(--dark-100);
     cursor: text;
-}
-
-section > .buttons {
-    display: flex;
-    gap: 10px;
 }

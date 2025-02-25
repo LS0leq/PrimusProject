@@ -1,6 +1,7 @@
 import { EditButton } from "../../../components/buttons/EditButton.mjs";
 import { DeleteButton } from "../../../components/buttons/DeleteButton.mjs";
-import {Button} from "../../../components/buttons/Button.mjs";
+import { Button } from "../../../components/buttons/Button.mjs";
+import {StationsRequests} from "../../../requests/channels/StationsRequests.mjs";
 
 export const Map = new CjsComponent((data) => {
     return `
@@ -11,6 +12,8 @@ export const Map = new CjsComponent((data) => {
 });
 
 Map.onLoad(() => {
+    const stationsRequests = new StationsRequests();
+
     const getLocation = () => {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
@@ -41,7 +44,18 @@ Map.onLoad(() => {
             popupAnchor: [0, -35]
         });
 
-        let stations = JSON.parse(localStorage.getItem('stations')) || [];
+        let stations = [];
+
+        stationsRequests.getAll().then(data => {
+            stations = data;
+
+            stations.forEach(function(station) {
+                const marker = L.marker([station.lat, station.lng], { icon: customIcon }).addTo(map);
+                marker.on('click', function () {
+                    marker.bindPopup(createPopup(station)).openPopup();
+                });
+            });
+        });
 
         const createPopup = (station) => {
             return `
@@ -54,13 +68,6 @@ Map.onLoad(() => {
                 </div>
             `;
         };
-
-        stations.forEach(function(station) {
-            const marker = L.marker([station.lat, station.lng], { icon: customIcon }).addTo(map);
-            marker.on('click', function () {
-                marker.bindPopup(createPopup(station)).openPopup();
-            });
-        });
 
         map.on('click', function(e) {
             const lat = e.latlng.lat;
@@ -80,19 +87,21 @@ Map.onLoad(() => {
             const randomImage = images[Math.floor(Math.random() * images.length)];
 
             const newStation = {
-                id: stations.length + 1,
                 lat: lat,
                 lng: lng,
                 name: "Nowa Stacja",
                 image: randomImage
             };
 
-            stations.push(newStation);
+            stationsRequests.create(newStation).then(response => {
+                if (response && response.id) {
+                    newStation.id = response.id;
+                    stations.push(newStation);
 
-            const marker = L.marker([lat, lng], { icon: customIcon }).addTo(map);
-            marker.bindPopup(createPopup(newStation)).openPopup();
-
-            localStorage.setItem('stations', JSON.stringify(stations));
+                    const marker = L.marker([lat, lng], { icon: customIcon }).addTo(map);
+                    marker.bindPopup(createPopup(newStation)).openPopup();
+                }
+            });
         });
 
         window.openEditForm = (id) => {
@@ -116,30 +125,46 @@ Map.onLoad(() => {
                         const newName = document.getElementById(`name-${station.id}`).value;
                         const newImageFile = document.getElementById(`image-${station.id}`).files[0];
 
-                        if (newName && newImageFile) {
+                        const updatedStation = {
+                            name: newName,
+                        };
+
+                        if (newImageFile) {
                             const reader = new FileReader();
                             reader.onload = function(e) {
-                                station.name = newName;
-                                station.image = e.target.result;
+                                updatedStation.image = e.target.result;
+                                stationsRequests.update(station.id, updatedStation).then(response => {
+                                    if (response && response.message === "Stacja została zaktualizowana") {
+                                        station.name = newName;
+                                        station.image = e.target.result;
 
-                                localStorage.setItem('stations', JSON.stringify(stations));
-                                location.reload();
+                                        localStorage.setItem('stations', JSON.stringify(stations));
+                                        location.reload();
+                                    }
+                                });
                             };
                             reader.readAsDataURL(newImageFile);
-                        } else if (newName) {
-                            station.name = newName;
-                            localStorage.setItem('stations', JSON.stringify(stations));
-                            location.reload();
+                        } else {
+                            stationsRequests.update(station.id, updatedStation).then(response => {
+                                if (response && response.message === "Stacja została zaktualizowana") {
+                                    station.name = newName;
+                                    localStorage.setItem('stations', JSON.stringify(stations));
+                                    location.reload();
+                                }
+                            });
                         }
                     }
                 })}
                         
                         ${DeleteButton.render({
                     click: () => {
-                        const editForm = document.querySelector('.edit-form');
-                        if (editForm) {
-                            editForm.remove();
-                        }
+                        stationsRequests.delete(station.id).then(response => {
+                            if (response && response.message === "Stacja została usunięta") {
+                                stations = stations.filter(st => st.id !== station.id);
+                                localStorage.setItem('stations', JSON.stringify(stations));
+                                location.reload();
+                            }
+                        });
                     }
                 })}
                     </div>

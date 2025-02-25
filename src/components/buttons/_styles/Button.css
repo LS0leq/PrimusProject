@@ -1,15 +1,16 @@
 button {
     color: var(--light-100);
-    width: 200px;
+    width: fit-content;
     padding: 8px 12px;
-    background-color:var(--ecoGreen);
-    border-radius: 5px;
+    background: var(--dark-100);
+    border-radius: 8px;
     outline: none;
     border: none;
-    transition: all var(--transitionTimeLonger)  ease;
+    transition: .3s background-color;
+    cursor: pointer;
+    font-size: 14px;
 }
 
 button:hover {
-    background-color: var(--darkBottleGreen);
-    cursor: pointer;
+    background-color: var(--dark-300);
 }

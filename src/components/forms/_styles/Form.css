@@ -1,0 +1,55 @@
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+form > button {
+    border-radius: 14px;
+    padding: 10px 12px;
+    font-size: 16px;
+    width: 100%;
+    background: var(--dark-100);
+    color: var(--light-100);
+    border: none;
+    cursor: pointer;
+    transition: .3s background-color;
+}
+
+form > button:hover {
+    background: var(--dark-300);
+}
+
+form > .row {
+    display: flex;
+    gap: 10px;
+}
+
+form > .row > * {
+    width: calc(50% - 5px);
+}
+
+label {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+label > p {
+    font-size: 14px;
+    color: var(--dark-200);
+}
+
+label > input {
+    border: none;
+    border-bottom: 1px solid var(--light-300);
+    font-size: 16px;
+    padding: 5px 12px;
+    background: transparent;
+}
+
+label > input::placeholder {
+    font-size: 14px;
+    color: var(--light-500);
+}
+

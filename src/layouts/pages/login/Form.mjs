@@ -1,22 +1,28 @@
-export const Form = new CjsComponent((data) => {
+import {App} from "../../../requests/App.mjs";
 
+export const Form = new CjsComponent((data) => {
+    const submit = async () =>{
+        const { email, password } = Form.forms[0].serialize();
+
+       if( await App.users.auth(email, password)) Search.set("/dashboard/stats");
+    }
 
     return `
         <div class="login">
-                <div class="image">
-                     <div class="logo-container">
+            <div class="image">
+                 <div class="logo-container">
                     <img src="${svg(`logo/icon-white`)}" alt="Logo" class="logo" />
                 </div>
                 <img src="${jpg(`forming`)}" alt="Login Image" />
             </div>
 
-            <form>
+            <form onsubmit="event.preventDefault();">
                 <h2>Witaj w IdeaAmp!</h2>
                 <h3>Zaloguj się do swojego konta</h3>
                 
                 <label>
                     <p>Email</p>
-                    <input type="text" name="username" placeholder="np.admin@admin.com" required>
+                    <input type="email" name="email" placeholder="np.admin@admin.com" required>
                 </label>
                 
                 <label>
@@ -25,8 +31,8 @@ export const Form = new CjsComponent((data) => {
                 </label>
                 
         
-                <button class="submit">
-<!--                    <img src="${svg(`login/login`)}" alt="Login Icon" />-->
+                <button ${onClick(submit)}>
+                    <img src="${svg(`login/login`)}" alt="Login Icon" />
                     <p>Zaloguj się</p>
                 </button>
         

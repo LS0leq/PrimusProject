@@ -1,8 +1,6 @@
 .users{
     display: flex;
     flex-direction: column;
-    height: 67vh;
-    overflow-y: scroll;
     gap: 10px;
 
 }
@@ -76,4 +74,39 @@
 
 .users .edit-form button:hover {
     background-color: var(--darkBottleGreen);
+}
+
+.users {
+
+}
+
+.users > table {
+    border-radius: 8px;
+    outline-offset: -3px;
+    outline: 2px solid var(--dark-100);
+    overflow: hidden;
+    width: 100%;
+    margin-bottom: 4px;
+    position: relative;
+
+    height: 67vh;
+    overflow-y: scroll;
+}
+
+.users > table, tr, th, td {
+    border-collapse: collapse;
+    border: 2px solid var(--dark-100);
+}
+
+.users > table td, th {
+    padding: 8px;
+}
+
+.users > table tr:nth-child(1)  {
+    background: var(--dark-100);
+    color: var(--light-100);
+    position: sticky;
+    top: -2px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
 }

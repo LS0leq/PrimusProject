@@ -13,6 +13,7 @@ body {
     /*background-repeat: no-repeat;*/
     /*overflow-x:hidden ;*/
     overflow-x: hidden;
+    background: var(--light-100);
 
 
 /*    v2*/
@@ -25,6 +26,7 @@ body {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    color: var(--dark-100);
 }
 
 @font-face { font-family: DMSans-SemiBold; src: url("../fonts/DMSans-SemiBold.ttf"); }

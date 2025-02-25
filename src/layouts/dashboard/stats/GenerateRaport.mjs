@@ -28,23 +28,25 @@ export const GenerateRaport = new CjsComponent((data) => {
     };
 
     return `
-        <div class="generate-raport">
-            <div>
-                <!-- <label for="start-date">Od:</label> -->
+        <section>
+            <div class="picker">
                 <input type="date" id="start-date" class="date-picker" />
-            </div>
-            <span> - </span>
-            <div>
-                <!-- <label for="end-date">Do:</label> -->
+                <span> - </span>
                 <input type="date" id="end-date" class="date-picker" />
             </div>
             
             <!-- Przycisk generowania raportu -->
+            <div class="buttons">
             ${Button.render({
-        text: "Generuj raport",
-        click: generatePDF // Funkcja wywołana po kliknięciu
-    })}
+                text: "Generuj raport",
+                click: generatePDF // Funkcja wywołana po kliknięciu
+            })}
+                    ${Button.render({
+                text: "Wygeneruj z ostatniego tygodnia",
+                click: generatePDF // Funkcja wywołana po kliknięciu
+            })}
         </div>
+        </section>
     `;
 });
 

@@ -5,21 +5,23 @@ const Report = new CjsComponent((data) => {
 
     return `
         <div class="report list" id="report-${id}">
+            <div class="header">
+                <p>${date}</p>
+            </div>
             <div class="details">
-                <p><strong>Data:</strong> ${date}</p>
                 <p><strong>Użytkownik:</strong> ${user}</p>
                 <p><strong>Waga raportu:</strong> ${reportWeight} KB</p>
                 <p><strong>Rozmiar:</strong> ${reportSize}</p>
                 <p><strong>Status:</strong> ${reportSize}</p>
             </div>
-            <div class="actions">
+            <div class="buttons">
                 ${DeleteButton.render({ click: () => onDelete(id) })}
             </div>
         </div>
     `;
 });
 
-export const Reports = new CjsComponent(() => {
+export const List = new CjsComponent(() => {
     const reportsData = localStorage.getItem('reports');
     let reports = JSON.parse(reportsData) || [];
 
@@ -60,11 +62,10 @@ export const Reports = new CjsComponent(() => {
     }, 100);
 
     return `
-        <div class="reports">
-        </div>
+        <div class="reports"></div>
     `;
 });
 
 Report.importStyle('./src/layouts/dashboard/report/_styles/Reports.css');
-Report.importStyle('./src/layouts/dashboard/_styles/List.css');
-Reports.importStyle('./src/layouts/dashboard/report/_styles/Reports.css');
+Report.importStyle('./src/layouts/dashboard/report/_styles/List.css');
+List.importStyle('./src/layouts/dashboard/report/_styles/List.css');

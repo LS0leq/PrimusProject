@@ -1,3 +1,18 @@
+/*
+############################################
+#                                          #
+#  This file includes C.JS framework core  #
+#     Distributed under MS-RSL license     #
+#                                          #
+#    Any changes or other distributions    #
+#        requires author agreement         #
+#                                          #
+#          Created by technic404           #
+#      https://github.com/technic404       #
+#                                          #
+############################################
+*/
+
 /**
  * Class ment to be implemented into other readers.
  * 
@@ -1588,6 +1603,18 @@ class CjsRequest {
         this.headers = {};
         this.files = {};
         this.cooldown = 0;
+        this.bodyKey = null;
+    }
+
+    /**
+     * Sets body key, it's required when sending files and body at the same time
+     * @param {string} bodyKey 
+     * @returns {CjsRequest}
+     */
+    setBodyKey(bodyKey) {
+        this.bodyKey = bodyKey;
+
+        return this;
     }
 
     /**
@@ -1707,27 +1734,58 @@ class CjsRequest {
             }
         };
 
-        if(bodyExists) {
-            xhr.setRequestHeader("Content-Type", "application/json");
+        if(bodyExists || filesExists) {
+            if(bodyExists && !filesExists) {
+                xhr.setRequestHeader("Content-Type", "application/json");
+                xhr.send(JSON.stringify(this.body));
+            } else {
+                const formData = new FormData();
 
-            xhr.send(JSON.stringify(this.body));
-        } else if(filesExists) {
-            //xhr.setRequestHeader("Content-Type", "multipart/form-data");
-
-            const formData = new FormData();
-
-            for(const [key, value] of Object.entries(this.files)) {
-                if(value instanceof FileList) {
-                    for(const file of Array.from(value)) {
-                        formData.append(key, file);
+                for (const [key, value] of Object.entries(this.files)) {
+                    if (value instanceof FileList) {
+                        for (const file of Array.from(value)) {
+                            formData.append(key, file);
+                        }
+                    } else {
+                        formData.append(key, value);
                     }
                 }
-            }
 
-            xhr.send(formData);
+                if(bodyExists && !this.bodyKey) {
+                    console.log(`${CJS_PRETTY_PREFIX_X}Cannot send files and body data at the same time if bodyKey is not defined`);
+
+                    return new CjsRequestResult(0, null, true);
+                }
+    
+                if(bodyExists) formData.append(this.bodyKey, JSON.stringify(this.body));
+
+                xhr.send(formData);
+            }
         } else {
             xhr.send();
         }
+
+        // if(bodyExists) {
+        //     xhr.setRequestHeader("Content-Type", "application/json");
+
+        //     xhr.send(JSON.stringify(this.body));
+        // } else if(filesExists) {
+        //     //xhr.setRequestHeader("Content-Type", "multipart/form-data");
+
+        //     const formData = new FormData();
+
+        //     for(const [key, value] of Object.entries(this.files)) {
+        //         if(value instanceof FileList) {
+        //             for(const file of Array.from(value)) {
+        //                 formData.append(key, file);
+        //             }
+        //         }
+        //     }
+
+        //     xhr.send(formData);
+        // } else {
+        //     xhr.send();
+        // }
 
         xhr.onerror = (e) => {
             const requestResult = new CjsRequestResult(0, null, true);
@@ -1751,7 +1809,9 @@ class CjsRequest {
 
                 this.#onEndCallback(requestResult);
 
-                if(!requestResult.isError()) {
+                if(requestResult.isError()) {
+                    this.#onErrorCallback(requestResult);
+                } else {
                     this.#onSuccessCallback(requestResult);
                 }
 
@@ -2408,7 +2468,14 @@ class CjsComponent {
      * @returns {string} html
      */
     _getHtml = (data, layoutData = {}) => {
-        const html = this.func(data, layoutData);
+        let elementPromiseResolver = () => {};
+
+        const elementPromise = new Promise((resolve, rejest) => elementPromiseResolver = resolve);
+        const onLoadAttribute = mutationListener.listen("add", (cjsEvent) => {
+            elementPromiseResolver(cjsEvent.target);
+            this._executeOnLoad(this._onLoadData)
+        });
+        const html = this.func(data, elementPromise, layoutData);
 
         /**
          * Adds attributes to root element
@@ -2464,8 +2531,6 @@ class CjsComponent {
             return container.innerHTML;
         }
 
-        const onLoadAttribute = mutationListener.listen("add", () => this._executeOnLoad(this._onLoadData));
-
         return addAttributes(addLazyIdentifiers(html), [
             this.attribute, onLoadAttribute.trim()
         ]);
@@ -2491,7 +2556,7 @@ class CjsComponent {
 
     /**
      * Creates the component type element
-     * @param {(componentData: object, layoutData: object) => string} func function that will return component html. The object argument is data provided by parent layout
+     * @param {(componentData: object, promise: Promise<HTMLElement> layoutData: object) => string} func function that will return component html. The object argument is data provided by parent layout
      */
     constructor(func) {
         this.func = func;
@@ -2500,6 +2565,20 @@ class CjsComponent {
         this.preSetData = {};
 
         this.attribute = Cjs.generateAttribute(CJS_COMPONENT_PREFIX, CjsTakenAttributes.components);
+    }
+
+    /**
+     * Parses HTMLElement to forms
+     * @param {HTMLElement} element 
+     * @returns {CjsForm[]}
+     */
+    toForms(element) {
+        const forms = Array.from(element.querySelectorAll("form"));
+        const componentIsForm = element.tagName === "FORM"
+
+        if(componentIsForm) forms.push(element);
+
+        return forms.map(form => new CjsForm(form));
     }
 
     /**
@@ -3169,6 +3248,27 @@ class CjsLayout {
      */
     show() {
         this.getElement().style.display = '';
+    }
+
+    /**
+     * Rerenders all layouts this type
+     * @returns {CjsLayout}
+     */
+    rerenderLayouts() {
+        const layouts = Array.from(document.body.querySelectorAll(`[${this.attribute}]`));
+        const newLayout = this.toElement();
+
+        for(const layout of layouts) {
+            layout.replaceWith(newLayout);
+
+            setTimeout(() => {
+                this._executeOnLoad();
+
+                CjsFrameworkEvents.onLoadLayout(this);
+            }, 2);
+        }
+
+        return this;
     }
 }
 class CjsComponentsCollection {

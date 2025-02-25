@@ -5,7 +5,8 @@
     padding: 15px;
     border-radius: 15px;
     font-size: 80%;
-    border: 2px solid var(--lighterBorderGray);
+    border: 2px solid var(--light-200);
+    height: fit-content;
 }
 
 .card > .title {

@@ -1,6 +1,6 @@
 import { Button } from "../../../components/buttons/Button.mjs";
 
-export const GenerateRaport = new CjsComponent((data) => {
+export const Generate = new CjsComponent((data) => {
     // Funkcja ustawiająca daty na wczorajszy dzień
     const setLastDay = () => {
         const yesterday = new Date();
@@ -58,45 +58,40 @@ export const GenerateRaport = new CjsComponent((data) => {
     };
 
     // HTML z przyciskami oraz formularzem
-    const html = `
-        <div class="generate-raport">
-            <div>
+    return `
+        <section class="report">
+            <div class="buttons">
                 ${Button.render({
-        text: "Ostatni dzień",
-        className: "range-button",
-        click: setLastDay // Funkcja setLastDay przypisuje się do eventu kliknięcia
-    })}
+                    text: "Ostatni dzień",
+                    className: "range-button",
+                    click: setLastDay // Funkcja setLastDay przypisuje się do eventu kliknięcia
+                })}
                 ${Button.render({
-        text: "Ostatni tydzień",
-        className: "range-button",
-        click: setLastWeek // Funkcja setLastWeek przypisuje się do eventu kliknięcia
-    })}
+                    text: "Ostatni tydzień",
+                    className: "range-button",
+                    click: setLastWeek // Funkcja setLastWeek przypisuje się do eventu kliknięcia
+                })}
                 ${Button.render({
-        text: "Ostatni miesiąc",
-        className: "range-button",
-        click: setLastMonth // Funkcja setLastMonth przypisuje się do eventu kliknięcia
-    })}
+                    text: "Ostatni miesiąc",
+                    className: "range-button",
+                    click: setLastMonth // Funkcja setLastMonth przypisuje się do eventu kliknięcia
+                })}
             </div>
             
             <div class="generate">
-                <div>
-                    <input type="date" id="start-date" class="date-picker" />
-                </div>
+                <input type="date" id="start-date" class="date-picker" />
                 <span> - </span>
-                <div>
-                    <input type="date" id="end-date" class="date-picker" />
-                </div>
+                <input type="date" id="end-date" class="date-picker" />
             
                 ${Button.render({
-        text: "Generuj raport",
-        className: "generate-button",
-        click: generatePDF // Funkcja generatePDF przypisuje się do eventu kliknięcia
-    })}
+                    text: "Generuj raport",
+                    className: "generate-button",
+                    click: generatePDF // Funkcja generatePDF przypisuje się do eventu kliknięcia
+                })}
             </div>
         </div>
     `;
 
-    return html;
 });
 
-GenerateRaport.importStyle('./src/layouts/dashboard/report/_styles/GenerateRaport.css');
+Generate.importStyle('./src/layouts/dashboard/report/_styles/Generate.css');

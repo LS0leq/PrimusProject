@@ -1,0 +1,44 @@
+label {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+label > input {
+    color: var(--dark-100);
+    font-size: 16px;
+
+    border: 1px solid var(--light-400);
+    border-radius: 8px;
+    padding: 8px 12px;
+}
+
+label > p {
+    font-size: 14px;
+    color: var(--dark-100);
+}
+
+label > input::placeholder {
+    font-size: 14px;
+    color: var(--dark-300);
+}
+
+/*label > input::placeholder {*/
+/*    */
+/*}*/
+
+/*div>input,.container .section> div>select {*/
+/*    color: var(--dark-100);*/
+/*    border: 1px solid var(--light-400);*/
+/*    border-radius: 8px;*/
+/*    padding: 8px 12px;*/
+/*    transition: all var(--transitionTimeLonger) ease;*/
+/*    box-sizing: border-box;*/
+/*}*/
+
+
+/*.container .section> div>input:focus,.container .section> div>select:focus {*/
+/*    border-color: var(--dark-100);*/
+/*    outline: none;*/
+/*    box-shadow: 0 0 8px var(--light-400);*/
+/*}*/

@@ -1,9 +1,7 @@
 export const Wrapper = new CjsComponent((data) => {
     
     return `
-        <div class="wrapper">
-        
-        </div>
+        <div class="wrapper"></div>
     `;
 });
 

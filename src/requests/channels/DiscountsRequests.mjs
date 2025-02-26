@@ -51,7 +51,7 @@ export class DiscountsRequests {
     }
 
     async delete(discountId) {
-        const request = await new CjsRequest(`${this.#path}/delete/${discountId}`, "delete")
+        const request = await new CjsRequest(`${this.#path}/${discountId}`, "delete")
             .setHeaders(getHeaders())
             .onError(r => CjsNotification.error(r.json().error))
             .doRequest();
@@ -60,4 +60,5 @@ export class DiscountsRequests {
 
         return request.json();
     }
+
 }

@@ -8,5 +8,40 @@
     flex-direction: column;
     border: 2px solid var(--lighterBorderGray);
     overflow-y: auto;
+}
 
+@media screen and (max-width: 375px) {
+    .content {
+        width: 95%;
+        height: 85vh;
+        margin-right: 0;
+        margin-top: 0;
+        border-radius: 15px;
+        border-width: 1px;
+        overflow-y: auto;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .content {
+        width: 95%;
+        height: 85vh;
+        margin-right: 0;
+        margin-top: 0;
+        border-radius: 18px;
+        border-width: 1px;
+        overflow-y: auto;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .content {
+        width: 90%;
+        height: 90vh;
+        margin-right: 0.5%;
+        margin-top: 0.25%;
+        border-radius: 20px;
+        border-width: 2px;
+        overflow-y: auto;
+    }
 }

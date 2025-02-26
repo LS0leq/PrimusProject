@@ -1,32 +1,19 @@
 import { Form } from "../../../components/forms/Form.mjs";
-import { UserRequests } from "../../../requests/channels/UserRequests.mjs";
+import {App} from "../../../requests/App.mjs";
 
-export const Personal = new CjsComponent(async (data) => {
-    const userRequests = new UserRequests();
-    const userData = await userRequests.getUserData();
+export const Personal = new CjsComponent((data) => {
+    const { first_name, last_name, date_of_birth  } = App.users.syncSelf();
 
     return Form.render({
         inputs: [
-            { text: "Imię", placeholder: "Jan", value: userData.first_name || "", name: "first_name" },
-            { text: "Nazwisko", placeholder: "Kowalski", value: userData.last_name || "", name: "last_name" },
-            { text: "Data urodzenia", type: "date", value: userData.birth_date || "", name: "birth_date" }
+            { text: "Imię", placeholder: "Jan", value: first_name, name: "first_name" },
+            { text: "Nazwisko", placeholder: "Kowalski", value: last_name, name: "last_name" },
+            { text: "Data urodzenia", type: "date", value: date_of_birth, name: "date_of_birth" }
         ],
         button: {
             text: "Aktualizuj",
-            click: async (formData) => {
-                const updateData = {
-                    first_name: formData.first_name,
-                    last_name: formData.last_name,
-                    birth_date: formData.birth_date
-                };
-
-                const response = await userRequests.updateSelf(updateData);
-
-                if (response) {
-                    CjsNotification.success("Dane osobowe zaktualizowane!");
-                } else {
-                    CjsNotification.error("Nie udało się zaktualizować danych.");
-                }
+            click: async (data) => {
+                await App.users.updateSelf(data);
             }
         }
     });

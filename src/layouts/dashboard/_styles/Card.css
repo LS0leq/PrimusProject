@@ -13,3 +13,6 @@
     margin-bottom: 10px;
 }
 
+.card >p{
+    color: var(--dark-100);
+}

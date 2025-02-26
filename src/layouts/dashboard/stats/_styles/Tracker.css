@@ -3,5 +3,6 @@
 }
 
 p.quanity{
-    font-size: 38px;
+    font-size: 230%;
+    color: var(--dark-100);
 }

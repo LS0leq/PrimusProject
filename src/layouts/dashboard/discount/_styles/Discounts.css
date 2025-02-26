@@ -19,11 +19,17 @@
     flex-direction: row;
     gap: 10px;
 }
-
+.discounts .discount-box .info p {
+    color: var(--dark-100);
+}
 .discounts .actions {
     display: flex;
     align-items: center;
     gap: 20px;
+}
+
+.discounts .add-form h3{
+    color: var(--dark-100);
 }
 
 

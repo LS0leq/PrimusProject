@@ -26,7 +26,7 @@ Search.onChange((search) => {
 
 ThemePlugin.loadTheme();
 
-ThemePlugin.setTheme("light");
+ThemePlugin.setTheme("dark");
 
 (async () => {
     const stations = await App.stations.getAll();

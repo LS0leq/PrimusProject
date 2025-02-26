@@ -1,112 +1,125 @@
-.users{
+.users {
     display: flex;
     flex-direction: column;
     gap: 10px;
-
+    font-size: 20px;
 }
 
-.users >div> .item{
-    width: 99%;
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
-}
-
-.users >div> .item > .info {
-    display: flex;
-    justify-content: space-between;
-    gap: 25px;
-}
-
-
-.users>div>.item>.actions{
-    display: flex;
-    gap: 25px;
-}
-
-.users .edit-form {
+.users table {
     width: 100%;
-    padding: 20px;
-    border-radius: 15px;
-    font-size: 14px;
-    border: 2px solid var(--lighterBorderGray);
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.users .edit-form h3 {
-    margin: 0 0 10px 0;
-    font-size: 16px;
-}
-
-.users .edit-form label {
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--dark-400);
-}
-
-.users .edit-form input {
-    padding: 8px;
-    font-size: 14px;
-    border: 1px solid var(--lighterBorderGray);
+    border-collapse: collapse;
+    background: var(--light-100);
     border-radius: 8px;
-    outline: none;
-    transition: border-color 0.3s ease;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.users .edit-form input:focus {
-    border-color: var(--ecoGreen);
-    box-shadow: 0 0 5px rgba(0, 150, 255, 0.3);
+.users th,
+.users td {
+    padding: 12px;
+    border: 1px solid var(--light-400);
+    text-align: left;
 }
 
-.users .edit-form button {
+.users th {
+    background: var(--dark-100);
     color: var(--light-100);
-    width: 200px;
-    padding: 8px 12px;
-    background-color: var(--ecoGreen);
-    border-radius: 5px;
-    outline: none;
-    border: none;
+    font-weight: bold;
+}
+
+.users tr:nth-child(even) {
+    background: var(--light-200);
+}
+
+.users tr:hover {
+    background: var(--light-300);
+    transition: background 0.3s ease;
+}
+
+.item.list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    border: 1px solid var(--light-400);
+    border-radius: 8px;
+    background: var(--light-100);
     transition: all var(--transitionTimeLonger) ease;
 }
 
-.users .edit-form button:hover {
-    background-color: var(--darkBottleGreen);
+.item.list:hover {
+    background: var(--light-300);
 }
 
-.users {
-
+.info {
+    display: flex;
+    gap: 10px;
+    align-items: center;
 }
 
-.users > table {
-    border-radius: 8px;
-    outline-offset: -3px;
-    outline: 2px solid var(--dark-100);
-    overflow: hidden;
-    width: 100%;
-    margin-bottom: 4px;
-    position: relative;
-
-    height: 67vh;
-    overflow-y: scroll;
+.actions {
+    display: flex;
+    gap: 10px;
 }
 
-.users > table, tr, th, td {
-    border-collapse: collapse;
-    border: 2px solid var(--dark-100);
+.actions button,
+.actions .icon-button {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease;
 }
 
-.users > table td, th {
-    padding: 8px;
-}
-
-.users > table tr:nth-child(1)  {
+.actions button:hover,
+.actions .icon-button:hover {
     background: var(--dark-100);
     color: var(--light-100);
-    position: sticky;
-    top: -2px;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
+}
+
+.edit-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 12px;
+    background: var(--light-100);
+    border: 1px solid var(--light-400);
+    border-radius: 8px;
+}
+
+.edit-form input {
+    color: var(--dark-100);
+    border: 1px solid var(--light-400);
+    border-radius: 8px;
+    padding: 8px 12px;
+    transition: all var(--transitionTimeLonger) ease;
+    box-sizing: border-box;
+}
+
+.edit-form input:focus {
+    border-color: var(--dark-100);
+    outline: none;
+    box-shadow: 0 0 8px var(--light-400);
+}
+
+.edit-form input::placeholder {
+    color: var(--light-400);
+}
+
+.edit-form input:hover {
+    border-color: var(--dark-100);
+    cursor: text;
+}
+
+.edit-form button {
+    padding: 10px;
+    border-radius: 8px;
+    background: var(--dark-100);
+    color: var(--light-100);
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.edit-form button:hover {
+    background: var(--dark-200);
 }

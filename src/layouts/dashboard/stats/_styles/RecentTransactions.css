@@ -1,16 +1,15 @@
-
 .recent-transactions {
     max-height: 150px;
     overflow-y: auto;
 }
 
-.recent-transactions .transactions{
+.recent-transactions .transactions {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
-.transaction{
+.transaction {
     display: flex;
     align-items: center;
     width: 100%;
@@ -25,19 +24,75 @@
 .transaction > .box > img {
     width: 30px;
     margin-left: 5px;
+    filter: var(--const-filter-black);
 }
 
-.transaction > .box > p{
+.transaction > .box > p {
     display: flex;
     flex-direction: column;
     gap: 5px;
+    color: var(--dark-100);
 }
 
-.transaction > .box > p > span{
+.transaction > .box > p > span {
     font-size: 12px;
     color: var(--dark-500);
 }
-.transaction > .price{
-    color: var(--ecoGreen);
 
+.transaction > .price {
+    color: var(--ecoGreen);
+}
+
+@media screen and (max-width: 375px) {
+    .recent-transactions {
+        max-height: 120px;
+    }
+
+    .transaction {
+        flex-direction: column;
+        gap: 10px;
+        justify-content: flex-start;
+    }
+
+    .transaction > .box {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .transaction > .box > p {
+        gap: 3px;
+    }
+
+    .transaction > .price {
+        font-size: 14px;
+    }
+
+    .transaction > .box > img {
+        width: 25px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .recent-transactions {
+        max-height: 130px;
+    }
+
+    .transaction {
+        flex-direction: column;
+        gap: 12px;
+        justify-content: flex-start;
+    }
+
+    .transaction > .box {
+        flex-direction: column;
+        gap: 7px;
+    }
+
+    .transaction > .price {
+        font-size: 16px;
+    }
+
+    .transaction > .box > img {
+        width: 28px;
+    }
 }

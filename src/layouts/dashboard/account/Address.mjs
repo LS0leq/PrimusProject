@@ -1,38 +1,23 @@
 import { Form } from "../../../components/forms/Form.mjs";
-import {UserRequests} from "../../../requests/channels/UserRequests.mjs";
+import {App} from "../../../requests/App.mjs";
 
 export const Address = new CjsComponent((data) => {
-    const userRequests = new UserRequests();
-
+    const {country,city,postal_code,address_line1} = App.users.syncSelf();
     return Form.render({
         inputs: [
-            { text: "Państwo", placeholder: "Polska", name: "country", value: "" },
-            [
-                { text: "Miasto", placeholder: "Gdańsk", name: "city", value: "" },
-                { text: "Kod pocztowy", placeholder: "30-125", name: "postal_code", value: "" },
-            ],
-            { text: "Adres", placeholder: "ul. Przykładowa 14C / 4", name: "address_line1", value: "" }
+            {text: "Państwo",placeholder: "Polska",name: "country",value: country},
+            {text: "Miasto",placeholder: "Gdańsk",name: "city",value: city},
+            {text: "Kod pocztowy",placeholder: "12-123",name: "postal_code",value: postal_code},
+            {text: "Adres",placeholder: "Przykładowa 12",name: "address_line1",value: address_line1}
         ],
         button: {
             text: "Aktualizuj",
-            click: async (formData) => {
-                const updateData = {
-                    country: formData.country,
-                    city: formData.city,
-                    postal_code: formData.postal_code,
-                    address_line1: formData.address_line1,
-                };
-
-                const response = await userRequests.updateSelf(updateData);
-
-                if (response) {
-                    CjsNotification.success("Adres zaktualizowany!");
-                } else {
-                    CjsNotification.error("Nie udało się zaktualizować adresu.");
-                }
+            click: async (data) => {
+               await App.users.updateSelf(data);
             }
         }
     });
+
 });
 
 Address.importStyle('./src/layouts/dashboard/account/_styles/Address.css');

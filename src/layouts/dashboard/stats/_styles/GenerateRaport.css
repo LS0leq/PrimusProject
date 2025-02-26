@@ -29,6 +29,9 @@ section > .picker > input:focus {
 section > .picker > input::placeholder {
     color: var(--light-400);
 }
+section > .picker > span {
+    color: var(--dark-100);
+}
 
 section > .picker > input:hover {
     border-color: var(--dark-100);
@@ -38,4 +41,36 @@ section > .picker > input:hover {
 section > .buttons {
     display: flex;
     gap: 10px;
+}
+
+@media screen and (max-width: 375px) {
+    section {
+        font-size: 16px;
+    }
+
+    section > .picker {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    section > .picker > input {
+        padding: 6px 10px;
+        font-size: 14px;
+    }
+
+    section > .buttons {
+        flex-direction: column;
+        gap: 8px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    section {
+        font-size: 18px;
+    }
+
+    section > .picker > input {
+        padding: 7px 11px;
+        font-size: 15px;
+    }
 }

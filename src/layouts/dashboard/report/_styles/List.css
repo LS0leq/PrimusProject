@@ -35,9 +35,15 @@
     flex-direction: row;
     gap: 8px;
 }
-
+.report>.details>p{
+    color: var(--dark-100);
+}
 .report > .buttons {
     margin-left: auto;
     margin-right: 5px;
 }
 
+
+.header>p{
+    color: var(--light-100) !important;
+}

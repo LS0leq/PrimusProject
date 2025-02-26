@@ -24,15 +24,23 @@ const Discount = new CjsComponent((data) => {
 });
 
 window.handleDelete = async (id) => {
+
+
+    const confirmDelete = confirm("Czy na pewno chcesz usunąć ten kod rabatowy?");
+    if (!confirmDelete) return;
+
     try {
-        await discountsRequests.delete(id);  // Wywołanie API do usunięcia zniżki
-        discountData = discountData.filter(d => d.id !== id);
-        localStorage.setItem("discounts", JSON.stringify(discountData));
-        location.reload();
+        const result = await discountsRequests.delete(id);
+        if (result) {
+            discountData = discountData.filter(d => d.id !== id);
+            localStorage.setItem("discounts", JSON.stringify(discountData));
+            location.reload();
+        }
     } catch (error) {
         CjsNotification.error("Błąd podczas usuwania zniżki");
     }
 };
+
 
 const renderAddDiscountForm = () => {
     const formHtml = `

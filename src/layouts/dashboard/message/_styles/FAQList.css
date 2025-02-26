@@ -1,3 +1,7 @@
+*{
+    color: var(--dark-100) !important;
+}
+
 .faq-list {
     display: flex;
     flex-direction: column;
@@ -32,7 +36,7 @@
 
 .faq-list .item .title::placeholder,
 .faq-list .item .answer-text::placeholder {
-    color: var(--light-400);
+    color: var(--light-200);
 }
 
 .faq-list .item .title:hover,
@@ -75,4 +79,8 @@
 
 .faq-list .item .actions .cancel:hover {
     background-color: darkred;
+}
+
+.faq-list .item .question input{
+    background-color: var(--dark-500);
 }

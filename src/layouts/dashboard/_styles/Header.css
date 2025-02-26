@@ -5,6 +5,7 @@
 
 .header p{
     font-size: 18px;
+    color: var(--dark-100);
 }
 
 .header h2{

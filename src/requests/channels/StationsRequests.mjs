@@ -5,16 +5,21 @@ export class StationsRequests {
     #path = `${ApiUrl}/stations`;
 
     async getAll(params = {}) {
-        const request = await new CjsRequest(`${this.#path}/get-all`, "get")
+        const queryString = new URLSearchParams(params).toString();
+        const url = queryString ? `${this.#path}/get-all?${queryString}` : `${this.#path}/get-all`;
+
+        const request = await new CjsRequest(url, "get")
             .setHeaders(getHeaders())
-            .setQueryParams(params)
             .onError(r => CjsNotification.error(r.json().error))
             .doRequest();
 
         if (request.isError()) return [];
 
-        return request.json();
+        const data = await request.json();
+
+        return data.items || [];
     }
+
 
     async getById(stationId) {
         const request = await new CjsRequest(`${this.#path}/${stationId}`, "get")
@@ -46,7 +51,7 @@ export class StationsRequests {
     }
 
     async update(stationId, data) {
-        const request = await new CjsRequest(`${this.#path}/update/${stationId}/update`, "put")
+        const request = await new CjsRequest(`${this.#path}/update/${stationId}`, "put")
             .setHeaders(getHeaders())
             .setBody(JSON.stringify(data))
             .onError(r => CjsNotification.error(r.json().error))
@@ -66,31 +71,5 @@ export class StationsRequests {
         if (request.isError()) return null;
 
         return request.json();
-    }
-
-    async addOrUpdateImage(stationId, image) {
-        const formData = new FormData();
-        formData.append("image", image);
-
-        const request = await new CjsRequest(`${this.#path}/image/${stationId}`, "post")
-            .setHeaders(getHeaders())
-            .setBody(formData)
-            .onError(r => CjsNotification.error(r.json().error))
-            .doRequest();
-
-        if (request.isError()) return null;
-
-        return request.json();
-    }
-
-    async getImage(stationId) {
-        const request = await new CjsRequest(`${this.#path}/image/${stationId}`, "get")
-            .setHeaders(getHeaders())
-            .onError(r => CjsNotification.error(r.json().error))
-            .doRequest();
-
-        if (request.isError()) return null;
-
-        return request.blob();
     }
 }

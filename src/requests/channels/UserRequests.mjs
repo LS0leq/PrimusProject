@@ -1,5 +1,6 @@
 import { ApiUrl } from "../../Constants.mjs";
 import { getHeaders } from "../AppUtils.mjs";
+import {AppCache} from "../AppCache.mjs";
 
 /**
  * @typedef {Object} User
@@ -7,10 +8,18 @@ import { getHeaders } from "../AppUtils.mjs";
  * @property {string} first_name
  * @property {string} last_name
  * @property {string} email
+ * @property {string} phone_number
+ * @property {number} registered_on
+ * @property {string} address_line1
+ * @property {string} city
+ * @property {string} postal_code
+ * @property {string} country
+ * @property {string} date_of_birth
+ * @property {string} gender
+ * @property {boolean} two_factor_enabled
+ * @property {string} status
+ * @property {number} balance
  * @property {string} role
- * @property {string} [token]
- * @property {string} [refresh_token]
- * @property {number} [expires_in]
  */
 
 export class UserRequests {
@@ -67,6 +76,53 @@ export class UserRequests {
     }
 
     /**
+     * @returns {User|null}
+     */
+    syncSelf() {
+        return AppCache.get("user");
+    }
+
+    /**
+     * @returns {User[]|null}
+     */
+    syncUsers() {
+        return AppCache.get("users") || [];
+    }
+
+    /**
+     * @returns {Promise<User[]|null>}
+     */
+    async getUsers() {
+        const request = await new CjsRequest(`${this.#path}/get-all`, "get")
+            .setHeaders(getHeaders())
+            .onError(r => CjsNotification.error(r.json().error))
+            .doRequest();
+
+        if (request.isError()) return null;
+
+        AppCache.set("users", request.json());
+
+        return request.json();
+    }
+
+
+    /**
+     * @returns {Promise<User|null>}
+     */
+    async self() {
+        const request = await new CjsRequest(`${this.#path}/self`, "get")
+            .setHeaders(getHeaders())
+            .onError(r => CjsNotification.error(r.json().error))
+            .doRequest();
+
+        if (request.isError()) return null;
+
+        AppCache.set("user", request.json());
+
+        return request.json();
+    }
+
+    /**
      * @param {Object} updateData
      * @returns {Promise<{message: string, changes: Object} | null>}
      */
@@ -75,9 +131,13 @@ export class UserRequests {
             .setHeaders(getHeaders())
             .setBody(updateData)
             .onError(r => CjsNotification.error(r.json().error))
+            .onSuccess(_ => CjsNotification.success("Zaktualizowano dane"))
             .doRequest();
 
         if (request.isError()) return null;
+
+        AppCache.set("user", request.json());
+
         return request.json();
     }
 
@@ -94,4 +154,18 @@ export class UserRequests {
         if (request.isError()) return null;
         return request.json();
     }
+    /**
+     * @returns {Promise<boolean>}
+     */
+    async validateToken() {
+        const request = await new CjsRequest(this.#path + "/validate-token", "GET")
+            .setHeaders(getHeaders())
+            .doRequest()
+
+        if(request.isError()) return false;
+
+        return request.json().valid;
+    }
+
 }
+

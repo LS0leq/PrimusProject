@@ -1,9 +1,9 @@
 import { EditButton } from "../../../components/buttons/EditButton.mjs";
 import { DeleteButton } from "../../../components/buttons/DeleteButton.mjs";
 import { Button } from "../../../components/buttons/Button.mjs";
-import {StationsRequests} from "../../../requests/channels/StationsRequests.mjs";
+import { StationsRequests } from "../../../requests/channels/StationsRequests.mjs";
 
-export const Map = new CjsComponent((data) => {
+export const Map = new CjsComponent(() => {
     return `
         <div class="map">
             <div id="map" style="height: ${window.innerHeight - 65}px;"></div>
@@ -22,7 +22,7 @@ Map.onLoad(() => {
                     initializeMap(latitude, longitude);
                 },
                 () => {
-                    initializeMap(52.2298, 21.0118);
+                    initializeMap(52.2298, 21.0118); // Domyślna lokalizacja
                 }
             );
         } else {
@@ -46,146 +46,95 @@ Map.onLoad(() => {
 
         let stations = [];
 
-        stationsRequests.getAll().then(data => {
-            stations = data;
+        stationsRequests.getAll().then(response => {
 
-            stations.forEach(function(station) {
-                const marker = L.marker([station.lat, station.lng], { icon: customIcon }).addTo(map);
-                marker.on('click', function () {
-                    marker.bindPopup(createPopup(station)).openPopup();
+            if (Array.isArray(response) && response.length > 0) {
+                const stations = response;
+                stations.forEach(station => {
+                    const marker = L.marker([station.lat, station.lng], { icon: customIcon }).addTo(map);
+                    marker.on('click', function () {
+                        marker.bindPopup(createPopup(station)).openPopup();
+                    });
                 });
-            });
+            } else {
+                console.warn("Brak stacji w odpowiedzi lub odpowiedź jest pusta.");
+            }
+        }).catch(error => {
+            console.error("Błąd podczas pobierania stacji:", error);
         });
+
+
+
 
         const createPopup = (station) => {
             return `
                 <div class="station-popup">
                     <h3>${station.name}</h3>
                     <img src="${station.image}" alt="${station.name}" class="station-image"/>
-                    ${EditButton.render({
-                click: () => openEditForm(station.id)
-            })}
+                    ${EditButton.render({ click: () => openEditForm(station.id) })}
                 </div>
             `;
         };
 
-        map.on('click', function(e) {
-            const lat = e.latlng.lat;
-            const lng = e.latlng.lng;
-
-            const images = [
-                "/src/assets/images/map/map1.jpg",
-                "/src/assets/images/map/map2.jpg",
-                "/src/assets/images/map/map3.jpg",
-                "/src/assets/images/map/map4.jpg",
-                "/src/assets/images/map/map5.jpg",
-                "/src/assets/images/map/map6.jpg",
-                "/src/assets/images/map/map7.jpg",
-                "/src/assets/images/map/map8.jpg"
-            ];
-
-            const randomImage = images[Math.floor(Math.random() * images.length)];
-
-            const newStation = {
-                lat: lat,
-                lng: lng,
-                name: "Nowa Stacja",
-                image: randomImage
-            };
-
-            stationsRequests.create(newStation).then(response => {
-                if (response && response.id) {
-                    newStation.id = response.id;
-                    stations.push(newStation);
-
-                    const marker = L.marker([lat, lng], { icon: customIcon }).addTo(map);
-                    marker.bindPopup(createPopup(newStation)).openPopup();
-                }
-            });
-        });
-
         window.openEditForm = (id) => {
             const station = stations.find(station => station.id === id);
-            if (station) {
-                const editFormHtml = `
-                    <div class="edit-form">
-                        <h3>Edytuj stację: ${station.name}</h3>
-                        <label for="name-${station.id}">Nazwa:</label>
-                        <input type="text" id="name-${station.id}" value="${station.name}">
-                        
-                        <label for="image-${station.id}">Obrazek (Wybierz plik):</label>
-                        <input type="file" id="image-${station.id}" accept="image/*">
-                        <div id="image-preview-${station.id}" class="image-preview">
-                            <img src="${station.image}" alt="Wybierz obrazek" style="max-width: 100px;"/>
-                        </div>
-                        
-                        ${Button.render({
-                    text: "Zapisz",
-                    click: () => {
-                        const newName = document.getElementById(`name-${station.id}`).value;
-                        const newImageFile = document.getElementById(`image-${station.id}`).files[0];
+            if (!station) return;
 
-                        const updatedStation = {
-                            name: newName,
-                        };
+            const editFormHtml = `
+                <div class="edit-form">
+                    <h3>Edytuj stację: ${station.name}</h3>
+                    <label for="name-${station.id}">Nazwa:</label>
+                    <input type="text" id="name-${station.id}" value="${station.name}">
+                    <label for="image-${station.id}">Obrazek:</label>
+                    <input type="file" id="image-${station.id}" accept="image/*">
+                    <div id="image-preview-${station.id}">
+                        <img src="${station.image}" alt="Podgląd obrazu" style="max-width: 100px;"/>
+                    </div>
+                    ${Button.render({
+                text: "Zapisz",
+                click: () => {
+                    const newName = document.getElementById(`name-${station.id}`).value;
+                    const newImageFile = document.getElementById(`image-${station.id}`).files[0];
 
-                        if (newImageFile) {
-                            const reader = new FileReader();
-                            reader.onload = function(e) {
-                                updatedStation.image = e.target.result;
-                                stationsRequests.update(station.id, updatedStation).then(response => {
-                                    if (response && response.message === "Stacja została zaktualizowana") {
-                                        station.name = newName;
-                                        station.image = e.target.result;
+                    const updatedStation = { name: newName };
 
-                                        localStorage.setItem('stations', JSON.stringify(stations));
-                                        location.reload();
-                                    }
-                                });
-                            };
-                            reader.readAsDataURL(newImageFile);
-                        } else {
+                    if (newImageFile) {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            updatedStation.image = e.target.result;
                             stationsRequests.update(station.id, updatedStation).then(response => {
-                                if (response && response.message === "Stacja została zaktualizowana") {
+                                if (response) {
                                     station.name = newName;
-                                    localStorage.setItem('stations', JSON.stringify(stations));
+                                    station.image = e.target.result;
                                     location.reload();
                                 }
                             });
-                        }
-                    }
-                })}
-                        
-                        ${DeleteButton.render({
-                    click: () => {
-                        stationsRequests.delete(station.id).then(response => {
-                            if (response && response.message === "Stacja została usunięta") {
-                                stations = stations.filter(st => st.id !== station.id);
-                                localStorage.setItem('stations', JSON.stringify(stations));
+                        };
+                        reader.readAsDataURL(newImageFile);
+                    } else {
+                        stationsRequests.update(station.id, updatedStation).then(response => {
+                            if (response) {
+                                station.name = newName;
                                 location.reload();
                             }
                         });
                     }
-                })}
-                    </div>
-                `;
+                }
+            })}
+                    ${DeleteButton.render({
+                click: () => {
+                    stationsRequests.delete(station.id).then(response => {
+                        if (response) {
+                            stations = stations.filter(st => st.id !== station.id);
+                            location.reload();
+                        }
+                    });
+                }
+            })}
+                </div>
+            `;
 
-                const mapContainer = document.querySelector('.map');
-                mapContainer.insertAdjacentHTML('beforeend', editFormHtml);
-
-                const fileInput = document.getElementById(`image-${station.id}`);
-                fileInput.addEventListener('change', (event) => {
-                    const file = event.target.files[0];
-                    if (file) {
-                        const reader = new FileReader();
-                        reader.onload = function(e) {
-                            const imagePreview = document.getElementById(`image-preview-${station.id}`);
-                            imagePreview.innerHTML = `<img src="${e.target.result}" alt="Podgląd obrazu" style="max-width: 100px;"/>`;
-                        };
-                        reader.readAsDataURL(file);
-                    }
-                });
-            }
+            document.querySelector('.map').insertAdjacentHTML('beforeend', editFormHtml);
         };
     };
 

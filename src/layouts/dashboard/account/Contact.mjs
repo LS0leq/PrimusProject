@@ -1,29 +1,17 @@
 import { Form } from "../../../components/forms/Form.mjs";
-import {UserRequests} from "../../../requests/channels/UserRequests.mjs";
+import {App} from "../../../requests/App.mjs";
 
 export const Contact = new CjsComponent((data) => {
-    const userRequests = new UserRequests();
-
+    const { email,phone_number } = App.users.syncSelf();
     return Form.render({
         inputs: [
-            { text: "Email", type: "email", placeholder: "kowalski@host.pl", value: "", name: "email" },
-            { text: "Nr. telefonu", type: "tel", placeholder: "+48 123456789", value: "", name: "phone_number" }
+            { text: "Email", type: "email", placeholder: "kowalski@host.pl", value: email, name: "email" },
+            { text: "Nr. telefonu", type: "tel", placeholder: "+48 123456789", value: phone_number, name: "phone_number" }
         ],
         button: {
             text: "Aktualizuj",
-            click: async (formData) => {
-                const updateData = {
-                    email: formData.email,
-                    phone_number: formData.phone_number
-                };
-
-                const response = await userRequests.updateSelf(updateData);
-
-                if (response) {
-                    CjsNotification.success("Dane kontaktowe zaktualizowane!");
-                } else {
-                    CjsNotification.error("Nie udało się zaktualizować danych.");
-                }
+            click: async (data) => {
+                await App.users.updateSelf(data);
             }
         }
     });

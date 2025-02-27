@@ -21,6 +21,20 @@ export const GenerateRaport = new CjsComponent((data) => {
         doc.save('raport.pdf');
     };
 
+    const setLastWeek = () => {
+        const today = new Date();
+        const lastSunday = today.getDate() - today.getDay();
+        const startOfLastWeek = new Date(today.setDate(lastSunday - 7));
+        const endOfLastWeek = new Date(startOfLastWeek);
+        endOfLastWeek.setDate(startOfLastWeek.getDate() + 6);
+
+        const startFormatted = startOfLastWeek.toISOString().split('T')[0];
+        const endFormatted = endOfLastWeek.toISOString().split('T')[0];
+
+        document.getElementById('start-date').value = startFormatted;
+        document.getElementById('end-date').value = endFormatted;
+    };
+
     return `
         <section>
             <div class="picker">
@@ -36,7 +50,7 @@ export const GenerateRaport = new CjsComponent((data) => {
             })}
                     ${Button.render({
                 text: "Wygeneruj z ostatniego tygodnia",
-                click: generatePDF 
+                click: setLastWeek 
             })}
         </div>
         </section>

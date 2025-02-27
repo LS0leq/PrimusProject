@@ -77,7 +77,7 @@
     color: var(--light-100);
 }
 
-.edit-form {
+tr>td>.edit-form {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -87,7 +87,7 @@
     border-radius: 8px;
 }
 
-.edit-form input {
+tr>td>.edit-form input {
     color: var(--dark-100);
     border: 1px solid var(--light-400);
     border-radius: 8px;
@@ -96,22 +96,22 @@
     box-sizing: border-box;
 }
 
-.edit-form input:focus {
+tr>td>.edit-form input:focus {
     border-color: var(--dark-100);
     outline: none;
     box-shadow: 0 0 8px var(--light-400);
 }
 
-.edit-form input::placeholder {
+tr>td>.edit-form input::placeholder {
     color: var(--light-400);
 }
 
-.edit-form input:hover {
+tr>td>.edit-form input:hover {
     border-color: var(--dark-100);
     cursor: text;
 }
 
-.edit-form button {
+tr>td>.edit-form button {
     padding: 10px;
     border-radius: 8px;
     background: var(--dark-100);
@@ -120,6 +120,6 @@
     transition: background 0.3s ease;
 }
 
-.edit-form button:hover {
+tr>td>.edit-form button:hover {
     background: var(--dark-200);
 }

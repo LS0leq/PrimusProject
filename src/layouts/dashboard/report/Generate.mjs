@@ -1,25 +1,22 @@
 import { Button } from "../../../components/buttons/Button.mjs";
 
 export const Generate = new CjsComponent((data) => {
-    // Funkcja ustawiająca daty na wczorajszy dzień
     const setLastDay = () => {
         const yesterday = new Date();
-        yesterday.setDate(yesterday.getDate() - 1);  // Ustawienie daty na dzień przed dzisiejszym (wczoraj)
-        const formattedDate = yesterday.toISOString().split('T')[0]; // Formatowanie daty na 'YYYY-MM-DD'
+        yesterday.setDate(yesterday.getDate() - 1);
+        const formattedDate = yesterday.toISOString().split('T')[0];
 
         document.getElementById('start-date').value = formattedDate;
         document.getElementById('end-date').value = formattedDate;
     };
 
-    // Funkcja ustawiająca daty na ostatni tydzień
     const setLastWeek = () => {
         const today = new Date();
-        const lastSunday = today.getDate() - today.getDay(); // Pierwszy dzień tygodnia (niedziela)
-        const startOfLastWeek = new Date(today.setDate(lastSunday - 7)); // Niedziela poprzedniego tygodnia
+        const lastSunday = today.getDate() - today.getDay();
+        const startOfLastWeek = new Date(today.setDate(lastSunday - 7));
         const endOfLastWeek = new Date(startOfLastWeek);
-        endOfLastWeek.setDate(startOfLastWeek.getDate() + 6); // Sobota poprzedniego tygodnia
+        endOfLastWeek.setDate(startOfLastWeek.getDate() + 6);
 
-        // Formatowanie daty na 'YYYY-MM-DD'
         const startFormatted = startOfLastWeek.toISOString().split('T')[0];
         const endFormatted = endOfLastWeek.toISOString().split('T')[0];
 
@@ -27,24 +24,22 @@ export const Generate = new CjsComponent((data) => {
         document.getElementById('end-date').value = endFormatted;
     };
 
-    // Funkcja ustawiająca daty na ostatni miesiąc
     const setLastMonth = () => {
         const today = new Date();
-        const lastMonth = new Date(today.setMonth(today.getMonth() - 1)); // Ustawienie daty na poprzedni miesiąc
-        lastMonth.setDate(1); // Pierwszy dzień poprzedniego miesiąca
+        const lastMonth = new Date(today.setMonth(today.getMonth() - 1));
+        lastMonth.setDate(1);
 
         const startFormatted = lastMonth.toISOString().split('T')[0];
 
-        const endOfLastMonth = new Date(today.getFullYear(), today.getMonth(), 0); // Ostatni dzień poprzedniego miesiąca
+        const endOfLastMonth = new Date(today.getFullYear(), today.getMonth(), 0);
         const endFormatted = endOfLastMonth.toISOString().split('T')[0];
 
         document.getElementById('start-date').value = startFormatted;
         document.getElementById('end-date').value = endFormatted;
     };
 
-    // Funkcja generująca PDF
     const generatePDF = () => {
-        const { jsPDF } = window.jspdf; // Uzyskanie dostępu do jsPDF z globalnego obiektu window
+        const { jsPDF } = window.jspdf;
 
         const doc = new jsPDF();
 
@@ -52,12 +47,11 @@ export const Generate = new CjsComponent((data) => {
         const endDate = document.getElementById('end-date').value;
 
         doc.text(`Raport od ${startDate} do ${endDate}`, 10, 10);
-        doc.text("Tutaj wstaw zawartość raportu.", 10, 20); // Przykładowy tekst raportu
+        doc.text("Tutaj wstaw zawartość raportu.", 10, 20);
 
-        doc.save('raport.pdf'); // Zapisanie PDF o nazwie "raport.pdf"
+        doc.save('raport.pdf');
     };
 
-    // HTML z przyciskami oraz formularzem
     return `
         <section class="report">
             <div class="buttons">
@@ -86,7 +80,7 @@ export const Generate = new CjsComponent((data) => {
                 ${Button.render({
                     text: "Generuj raport",
                     className: "generate-button",
-                    click: generatePDF // Funkcja generatePDF przypisuje się do eventu kliknięcia
+                    click: generatePDF 
                 })}
             </div>
         </div>
